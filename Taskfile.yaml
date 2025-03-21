@@ -1,0 +1,107 @@
+version: '3'
+
+dotenv: ['.env']
+
+vars:
+  KIND_VERSION: 1.32.0
+  KIND_CLUSTER_NAME: '{{default "gitops-fluxcd" .KIND_CLUSTER_NAME}}'
+  GITLAB_REPO_URL: '{{default "https://gitlab.com/gemeenteutrecht/gitops-referentie/gitops-flux.git" .GITLAB_REPO_URL}}'
+  GITLAB_REPO_BRANCH: '{{default "main" .GITLAB_REPO_BRANCH}}'
+
+tasks:
+  default:
+    desc: "Help / Show available tasks."
+    cmds:
+      - task --list-all
+    silent: true
+
+  requirements-check:
+    desc: "Check whether the user has all the required tools installed locally."
+    preconditions:
+      - sh: command -v kind
+        msg: |
+          🚨 kind is not installed! Use 'asdf' to install it (see README for details)
+      - sh: command -v flux
+        msg: |
+          🚨 fluxcd (cli) is not installed! Use 'asdf' to install it (see README for details)
+      - sh: command -v helm
+        msg: |
+          🚨 helm is not installed! Use 'asdf' to install it (see README for details)
+      - sh: command -v kubectl
+        msg: |
+          🚨 kubectl is not installed! Use 'asdf' to install it (see README for details)
+    cmds:
+      - echo -e "\n✅  All preconditions have been met.\n"
+    silent: true
+
+  run-local:
+    desc: "Run a local K8S cluster with all platform-services installed on it."
+    deps: [requirements-check]
+    cmds:
+      - task: create-k8s-cluster
+      - task: install-fluxcd
+      - task: deploy-flux-gitsource
+      - task: deploy-flux-bootstrap-kustomization
+
+  create-k8s-cluster:
+    desc: "Create and start a local Kubernetes cluster with Kind."
+    internal: true
+    cmds: 
+      - |
+        kind create cluster --config=- <<EOF
+        kind: Cluster
+        apiVersion: kind.x-k8s.io/v1alpha4
+        name: {{.KIND_CLUSTER_NAME}}
+        nodes:
+          - role: control-plane
+            image: kindest/node:v{{.KIND_VERSION}}
+          - role: worker
+            image: kindest/node:v{{.KIND_VERSION}}
+          - role: worker
+            image: kindest/node:v{{.KIND_VERSION}}
+        EOF
+      - echo -e "\n🚀 Local Kind cluster created successfully! 🚀"
+    silent: true
+
+  # We are not using the 'flux bootstrap' command, as this will need a Gitlab Access Token. 
+  # Normally, this would be the way to go, so that an SSH key is automatically created and granted 
+  # access to the repository. As we are using a public repository and obviously cannot grant write-access
+  # to the world, we are doing a manual setup here via the following flux commands. Once the GitSource 
+  # and Kustomization are created, Flux will have a reference to the repo and the workloads will be 
+  # deployed to the local Kind cluster.
+  install-fluxcd:
+    desc: "Install FluxCD on the local Kind cluster."
+    cmds:
+      - echo -e "\n\n🛠️  Installing FluxCD  - this can take while!"
+      - flux install
+      - echo "🚀 FluxCD installed successfully on local Kind cluster! 🚀"
+    silent: true
+
+  deploy-flux-gitsource:
+    desc: "Connect FluxCD to the given Git repository by deploying a GitSource to FluxCD."
+    cmds:
+      - |
+        flux create source git flux-system \
+          --url={{.GITLAB_REPO_URL}} \
+          --branch={{.GITLAB_REPO_BRANCH}}
+      - echo -e "\n\n🚀 Connected FluxCD to repository '{{.GITLAB_REPO_URL}}' 🚀"
+    silent: true
+
+  deploy-flux-bootstrap-kustomization:
+    desc: "Deploy a bootstrap Kustomization for the local Kind cluster."
+    cmds:
+      - |
+        flux create kustomization bootstrap \
+          --source=GitRepository/flux-system \
+          --path=clusters/local/flux-system
+      - echo -e "\n\n🚀 Created FluxCD bootstrap configuration 🚀"
+      - echo -e "👉 Workloads configured in the given repository will now be deployed to the local Kind cluster."
+      - echo -e "👉 Run the command 'flux get all' to verify the status.\n"
+    silent: true
+
+  uninstall: 
+    desc: "Uninstall local set-up by deleting the Kind cluster."
+    cmds:
+      - kind delete cluster --name {{.KIND_CLUSTER_NAME}}
+      - echo -e "✅ Kind cluster '{{.KIND_CLUSTER_NAME}}' successfully uninstalled\n"
+    silent: true

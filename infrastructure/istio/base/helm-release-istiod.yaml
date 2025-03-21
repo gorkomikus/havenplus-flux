@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: istiod
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: istiod
+      version: 1.24.1
+      sourceRef:
+        kind: HelmRepository
+        name: istio
+      interval: 12h
+  values:
+    pilot:
+      env:
+        # for now required for Gateway-API TLSRoute support
+        PILOT_ENABLE_ALPHA_GATEWAY_API: true

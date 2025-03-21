@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: istio-gateway
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: gateway
+      version: 1.24.1
+      sourceRef:
+        kind: HelmRepository
+        name: istio
+      interval: 12h
+  values:
+    service:
+      type: None # disable the default service, because we want the Gateway objects to create Services of type LoadBalancer
+    autoscaling:
+      minReplicas: 2

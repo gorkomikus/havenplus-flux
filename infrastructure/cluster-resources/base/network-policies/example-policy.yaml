@@ -1,0 +1,18 @@
+# The following NetworkPolicy is an example on how to restrict access to a certain namespace
+# Only workloads in namespace_b, namespace_c and namespace_a itself are allowed to access workloads in 
+# namespace_a
+#
+# apiVersion: networking.k8s.io/v1
+# kind: NetworkPolicy
+# metadata:
+#   name: restrict-namespace_a-ingress
+#   namespace: namespace-a
+# spec:
+#   podSelector: {} 
+#   ingress:
+#   - from:
+#     - namespaceSelector:
+#         matchExpressions:
+#         - key: kubernetes.io/metadata.name
+#           operator: In
+#           values: ["namespace_a", "namespace_b", "namespace_c"]

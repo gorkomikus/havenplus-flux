@@ -1,0 +1,12 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: grafana-pg-cluster
+spec:
+  instances: 2
+  bootstrap:
+    initdb:
+      database: grafana
+      owner: grafana
+  storage:
+    size: 2Gi

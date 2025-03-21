@@ -1,0 +1,29 @@
+apiVersion: opentelemetry.io/v1alpha1
+kind: Instrumentation
+metadata:
+  name: rolldice
+  namespace: alloy
+spec:
+  exporter:
+    endpoint: http://alloy.alloy:4318
+  propagators:
+  - tracecontext
+  - baggage
+  python:
+    env:
+    - name: OTEL_LOGS_EXPORTER
+      value: otlp_proto_http
+    - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
+      value: "true"
+    - name: OTEL_PYTHON_LOG_CORRELATION
+      value: "true"
+    - name: OTEL_PYTHON_LOGGING_AUTO_INSTRUMENTATION_ENABLED
+      value: "true"
+    - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
+      value: http://alloy.alloy:4318/v1/traces
+    - name: OTEL_EXPORTER_OTLP_LOGS_ENDPOINT
+      value: http://alloy.alloy:4318/v1/logs
+    image: ghcr.io/open-telemetry/opentelemetry-operator/autoinstrumentation-python:0.47b0
+  sampler:
+    argument: "1"
+    type: parentbased_traceidratio

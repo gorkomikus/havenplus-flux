@@ -1,0 +1,11 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: team-demo
+  namespace: team-demo
+spec:
+  interval: 1m0s
+  ref:
+    branch: main
+  url: https://gitlab.com/gemeenteutrecht/gitops-referentie/team-demo.git

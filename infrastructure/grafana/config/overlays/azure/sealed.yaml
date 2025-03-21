@@ -1,0 +1,16 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: grafana
+  namespace: grafana
+spec:
+  encryptedData:
+    grafana_oidc_client_secret: AgB4yR4jrLhivD1QBh7FJ4xeAd8CId9nwaPHn0IhvgehV0izRhQYPqrWxGZkw1LVqdME82tD70wKy6nVnCAjyz4qKB5/l3EywnTo+m6/NL89Px+ZVSSHsxdbSE57RlCiW5dUtlEn3PkOWYgG1ZVj4pwExWvERx9Et6TZP5qhKiw99ED6/Jhp11xwf+zKjgoJvuHADssjDS+hf8g8DgpiO8s2KoUf5f5UQYzjFfg3DQeC+cBXLU8I3W6k3xlPysGIuMMKQqDYM1gx09ahsFi4uG7F3w6JGOPETeSpBBksB+N7nCdRZf1X/QEXGt6Nw1iApNM3b8q/162ToX2w1NUVIyRZPd8K3l5iqQl+fbY4LJ5TqQdPt7i7Vef+3zuF6HQUAbofkSmWuKFsZ/Ru1/C91GVxWIj7drcOeCEDX4zoyeCr/AX8FE40K8kbduCnIYGucmzB98LE9SOcDUJqDWAal3DAglLKAtOHhu3n4cACVcXQY2a+zVOaA9DL7GtjWcteKKWqo9IdlKOJ9mgJyhbp5s8H8G6qEGl9bzphclpttkRWK2KEF+OlPbHQlzmp75/yV6rL/ktJXFluNuScBdtbYqkUfiW87umV8erF84L6JomyYn+Wh5ChlqNL6wu+y6JSj5ayg8fdYbG98AsPK1afWQOSDqCN1tYI5S6WvzvxfvhCbmHMUMc6ndWKcfvcqtj7fM12OFJEERYLiCnHihvne/joKi1K54YToqoCgT8z2iRPAw==
+  template:
+    metadata:
+      creationTimestamp: null
+      name: grafana
+      namespace: grafana
+    type: Opaque

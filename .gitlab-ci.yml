@@ -1,0 +1,18 @@
+variables:
+  RENOVATE_REPOSITORIES: $CI_PROJECT_PATH
+
+kustomize:
+  image:
+    name: bitnami/kubectl:1.31
+    entrypoint: [ "" ]
+  script:
+    - find ./infrastructure/*/overlays -name "kustomization.yaml" | while read -r kustomization; do
+      overlay_dir=$(dirname "$kustomization");
+      echo "Validating $overlay_dir";
+      kubectl kustomize "$overlay_dir" > /dev/null;
+      done
+
+include:
+  # https://gitlab.com/gitlab-com/gl-infra/renovate/renovate-runner/-/blob/main/templates/renovate.gitlab-ci.yml?ref_type=heads
+  - project: 'renovate-bot/renovate-runner'
+    file: '/templates/renovate.gitlab-ci.yml'

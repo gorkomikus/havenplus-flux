@@ -1,0 +1,44 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mimir
+spec:
+  chart:
+    spec:
+      version: "5.5.1"
+  values:
+    global:
+      podLabels:
+        "azure.workload.identity/use": "true"
+    serviceAccount:
+      create: true
+      name: mimir-storage
+      annotations:
+        azure.workload.identity/client-id: "fbd3408e-7b69-4dab-b0e4-a3168762337d"
+      labels:
+        "azure.workload.identity/use": "true"
+    mimir:
+      structuredConfig:
+        limits:
+          max_queriers_per_tenant: 2
+          compactor_blocks_retention_period: 7d
+          max_global_series_per_user: 1000000
+          ingestion_rate: 50000
+          ingestion_burst_size: 400000
+        common:
+          storage:
+            azure:
+              account_name: lgtmfield
+              endpoint_suffix: "blob.core.windows.net"
+        blocks_storage:
+          backend: azure
+          azure:
+            container_name: mimir-blocks
+        alertmanager_storage:
+          backend: azure
+          azure:
+            container_name: mimir-alertmanager
+        ruler_storage:
+          backend: azure
+          azure:
+            container_name: mimir-ruler

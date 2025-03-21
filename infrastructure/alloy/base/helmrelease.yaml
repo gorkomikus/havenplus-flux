@@ -1,0 +1,50 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: alloy
+  namespace: alloy
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: alloy
+      version: "<override>"
+      sourceRef:
+        kind: HelmRepository
+        name: alloy
+      interval: 1m
+  values:
+    controller:
+      type: daemonset
+      podAnnotations:
+        # Ensure istio-proxy starts before Alloy, otherwise required calls for e.g. podmonitors to Kube-API might fail.
+        proxy.istio.io/config: '{"holdApplicationUntilProxyStarts": true}'
+    serviceMonitor:
+      enabled: true
+    alloy:
+      extraPorts:
+        - name: "faro"
+          port: 12347
+          targetPort: 12347
+          protocol: "TCP"
+        - name: "grpc-4317"
+          port: 4317
+          targetPort: 4317
+          protocol: "TCP"
+        - name: "http-4318"
+          port: 4318
+          targetPort: 4318
+          protocol: "TCP"
+        - name: "grpc-4319"
+          port: 4319
+          targetPort: 4319
+          protocol: "TCP"
+        - name: "http-4320"
+          port: 4320
+          targetPort: 4320
+          protocol: "TCP"
+      enableReporting: false
+      configMap:
+        create: false
+        name: "<override>"
+        key: "<override>"

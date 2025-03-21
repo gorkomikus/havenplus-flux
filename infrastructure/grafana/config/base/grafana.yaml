@@ -1,0 +1,34 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: Grafana
+metadata:
+  name: grafana
+  labels:
+    dashboards: "grafana"
+spec:
+  config:
+    server:
+      root_url: "<override>"
+      enable_gzip: "true"
+    # database:
+    analytics:
+      reporting_enabled: "false"
+    security:
+      disable_initial_admin_creation: "false"
+      cookie_secure: "true"
+      cookie_samesite: "strict"
+      content_security_policy: "true"
+    auth:
+      login_cookie_name: "__Host-grafana_session"
+    users:
+      allow_sign_up: "false"
+      viewers_can_edit: "true"
+    auth.generic_oauth:
+      api_url:  "<override>"
+      token_url: "<override>"
+      auth_url: "<override>"
+      enabled: "true"
+      name: "Keycloak"
+      scopes: "openid,email,profile"
+      role_attribute_path: "contains(groups[*], 'admin') && 'GrafanaAdmin' || 'Viewer'"
+      allow_assign_grafana_admin: "true"
+      groups_attribute_path: "groups"

@@ -1,0 +1,103 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mimir
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: mimir-distributed
+      version: "do_override"
+      sourceRef:
+        kind: HelmRepository
+        name: mimir
+      interval: 1m
+  values:
+    minio:
+      enabled: false
+    nginx:
+      enabled: false
+    metaMonitoring:
+      serviceMonitor:
+        enabled: true
+    mimir:
+      structuredConfig:
+        multitenancy_enabled: true
+        limits:
+          max_queriers_per_tenant: 2
+          max_global_series_per_user: 1000000
+          out_of_order_time_window: 12h
+          max_label_names_per_series: 50
+        tenant_federation:
+          enabled: true
+        ruler:
+          tenant_federation:
+            enabled: true
+    alertmanager:
+      persistentVolume:
+        enabled: true
+      statefulSet:
+        enabled: true
+    ingester:
+      persistentVolume:
+        size: 50Gi
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: target # support for enterprise.legacyLabels
+                    operator: In
+                    values:
+                      - ingester
+              topologyKey: 'kubernetes.io/hostname'
+
+            - labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/component
+                    operator: In
+                    values:
+                      - ingester
+              topologyKey: 'kubernetes.io/hostname'
+      zoneAwareReplication:
+        enabled: false
+      extraArgs:
+        config.expand-env: true
+    ruler:
+      extraArgs:
+        config.expand-env: true
+    querier:
+      extraArgs:
+        config.expand-env: true
+    store_gateway:
+      persistentVolume:
+        size: 10Gi
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: target # support for enterprise.legacyLabels
+                    operator: In
+                    values:
+                      - store-gateway
+              topologyKey: 'kubernetes.io/hostname'
+    
+            - labelSelector:
+                matchExpressions:
+                  - key: app.kubernetes.io/component
+                    operator: In
+                    values:
+                      - store-gateway
+              topologyKey: 'kubernetes.io/hostname'
+      extraArgs:
+        config.expand-env: true
+    compactor:
+      persistentVolume:
+        size: 20Gi
+      extraArgs:
+        config.expand-env: true
+    gateway:
+      enabledNonEnterprise: true
+    tokengenJob:
+      enable: false

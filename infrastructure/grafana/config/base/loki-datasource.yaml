@@ -1,0 +1,17 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
+metadata:
+  name: loki
+spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  datasource:
+    name: loki
+    access: proxy
+    type: loki
+    url: http://loki-gateway.loki.svc.cluster.local:80
+    jsonData:
+      "httpHeaderName1": "X-Scope-OrgId"
+    secureJsonData:
+      "httpHeaderValue1": "1"

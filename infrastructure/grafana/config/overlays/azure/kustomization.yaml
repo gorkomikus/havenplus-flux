@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: grafana
+resources:
+  - ../../base
+  - sealed.yaml
+  - routes.yaml
+patches:
+  - path: grafana-patch.yaml
+    target:
+      kind: Grafana
+      name: grafana
+    options:
+      allowNameChange: true
