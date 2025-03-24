@@ -30,6 +30,9 @@ tasks:
       - sh: command -v kubectl
         msg: |
           🚨 kubectl is not installed! Use 'asdf' to install it (see README for details)
+      - sh: command -v cloud-provider-kind
+        msg: |
+          🚨 cloud-provider-kind is not installed! See https://github.com/kubernetes-sigs/cloud-provider-kind?tab=readme-ov-file#install for installation instructions
     cmds:
       - echo -e "\n✅  All preconditions have been met.\n"
     silent: true
@@ -97,6 +100,9 @@ tasks:
       - echo -e "\n\n🚀 Created FluxCD bootstrap configuration 🚀"
       - echo -e "👉 Workloads configured in the given repository will now be deployed to the local Kind cluster."
       - echo -e "👉 Run the command 'flux get all' to verify the status.\n"
+      - echo -e "👉 Run the command 'sudo cloud-provider-kind' to expose the Ingress (Service of type LoadBalancer).\n"
+      - echo -e "👉 Run the command 'kubectl get svc ingress-nginx-controller -n ingress-nginx -o jsonpath='{.status.loadBalancer.ingress[0].ip}'' to get the local IP address that cloud-provider-kind created.\n"
+      - echo -e "👉 Edit your /etc/hosts file to map the hostname of an application in your cluster to the local IP address.\n"
     silent: true
 
   uninstall: 
