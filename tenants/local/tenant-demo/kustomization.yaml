@@ -4,4 +4,4 @@ resources:
 - git-repository.yaml
 - rbac.yaml
 - sync.yaml
-namespace: team-demo
+namespace: tenant-demo
