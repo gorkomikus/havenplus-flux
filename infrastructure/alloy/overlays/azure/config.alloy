@@ -32,7 +32,7 @@ otelcol.processor.attributes "envoy" {
 discovery.kubernetes "pods" {
   role = "pod"
   namespaces {
-    names = ["team-demo","alloy","keycloak","cert-manager","flux-system","grafana",
+    names = ["tenant-demo","alloy","keycloak","cert-manager","flux-system","grafana",
              "grafana-operator","istio-system","kube-node-lease","kube-public",
              "harbor","httpbin-public","httpbin-restricted","istio-ingress",
              "kube-state-metrics","kube-system","loki","mimir","node-exporter",
