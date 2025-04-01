@@ -99,9 +99,9 @@ tasks:
           --path=clusters/local/flux-system
       - echo -e "\n\n🚀 Created FluxCD bootstrap configuration 🚀"
       - echo -e "👉 Workloads configured in the given repository will now be deployed to the local Kind cluster."
-      - echo -e "👉 Run the command 'flux get all' to verify the status.\n"
-      - echo -e "👉 Run the command 'sudo cloud-provider-kind' to expose the Ingress (Service of type LoadBalancer).\n"
-      - echo -e "👉 Run the command 'kubectl get svc ingress-nginx-controller -n ingress-nginx -o jsonpath='{.status.loadBalancer.ingress[0].ip}'' to get the local IP address that cloud-provider-kind created.\n"
+      - echo -e "👉 Run the command 'flux get all' to verify the status."
+      - echo -e "👉 Run the command 'sudo cloud-provider-kind' to expose the Ingress (Service of type LoadBalancer)."
+      - echo -e "👉 Run the command 'kubectl get svc ingress-nginx-controller -n ingress-nginx -o jsonpath='{.status.loadBalancer.ingress[0].ip}'' to get the local IP address that cloud-provider-kind created."
       - echo -e "👉 Edit your /etc/hosts file to map the hostname of an application in your cluster to the local IP address.\n"
     silent: true
 
