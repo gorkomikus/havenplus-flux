@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: sealed-secrets
 resources:
   - ../../base
+  - static-key/static-key.yaml
 patches:
   - path: patches/helm-release.yaml
   - path: patches/routes.yaml
