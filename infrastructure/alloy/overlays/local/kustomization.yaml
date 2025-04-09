@@ -8,7 +8,6 @@ configMapGenerator:
     options:
       disableNameSuffixHash: true
 resources:
-  - http-rule.yaml
   - ../../base
 patches:
   - path: helmrelease-patch.yaml
