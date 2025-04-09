@@ -11,7 +11,7 @@ spec:
   interval: 1m0s
   ref:
     branch: main
-  url: https://gitlab.com/gemeenteutrecht/gitops-referentie/gitops-flux.git
+  url: https://gitlab.com/commonground/haven/havenplus/gitops-flux.git
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
