@@ -4,7 +4,8 @@ namespace: alloy
 configMapGenerator:
   - name: alloy
     files:
-    - config.alloy
+    - config/generic.alloy
+    - config/loki.alloy
     options:
       disableNameSuffixHash: true
 resources:
