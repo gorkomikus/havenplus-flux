@@ -11,6 +11,5 @@ resources:
   - keycloak.yaml
   - loki.yaml
   - mimir.yaml
-  - pinniped.yaml
   - sealed-secrets.yaml
   - tempo.yaml
