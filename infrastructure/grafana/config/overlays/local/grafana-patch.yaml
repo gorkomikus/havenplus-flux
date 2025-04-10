@@ -3,13 +3,22 @@ kind: Grafana
 metadata:
   name: grafana
 spec:
+  # Set-up simplest form of Grafana on local
   config:
-    server:
-      root_url: "http://grafana.<domain>"
     database:
       type: postgres
       name: grafana
       user: grafana
+    server:
+      root_url: "http://grafana.havenplus.local"
+    analytics:
+      reporting_enabled: "false"
+    security:
+      admin_user: admin
+      admin_password: admin
+    auth: ~
+    users: ~
+    auth.generic_oauth: ~
   deployment:
     spec:
       template:
