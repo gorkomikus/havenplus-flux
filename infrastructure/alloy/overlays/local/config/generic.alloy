@@ -7,6 +7,15 @@ discovery.kubernetes "pods" {
   }
 }
 
+discovery.kubernetes "k8s_nodes" {
+    role = "node"
+
+    selectors {
+        role  = "pod"
+        field = "spec.nodeName=" + coalesce(env("HOSTNAME"), constants.hostname)
+    }
+}
+
 discovery.relabel "pods" {
         targets = discovery.kubernetes.pods.targets
 

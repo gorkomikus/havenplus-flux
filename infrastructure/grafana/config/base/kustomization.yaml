@@ -7,5 +7,6 @@ resources:
   - dashboards.yaml
   - grafana.yaml
   - loki-datasource.yaml
+  - mimir-datasource.yaml
   - cnpg.yaml
   - namespaces.yaml
