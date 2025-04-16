@@ -45,7 +45,7 @@ Follow the next steps to start developing:
 
 ## Get Involved
 * Ask your question by [creating an issue](https://gitlab.com/commonground/haven/havenplus/gitops-flux/-/issues/new)
-* Join us in [Digilab's Mattermost](https://digilab.overheid.nl/chat/digilab/channels/infra-as-code)
+* Join us in [Digilab's Mattermost](https://digilab.overheid.nl/chat/digilab/channels/havenplus)
 
 ## License
 Licensed under the [EUPL](LICENSE.md).
