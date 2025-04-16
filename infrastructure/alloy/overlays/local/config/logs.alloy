@@ -16,6 +16,6 @@ loki.process "pods" {
 loki.write "main" {
     endpoint {
         url = "http://loki.loki.svc.cluster.local:3100/loki/api/v1/push"
-        tenant_id = "1"
+        tenant_id = "admin"
     }
 }

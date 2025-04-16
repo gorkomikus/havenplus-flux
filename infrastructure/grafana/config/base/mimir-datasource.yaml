@@ -1,16 +1,16 @@
 apiVersion: grafana.integreatly.org/v1beta1
 kind: GrafanaDatasource
 metadata:
-  name: loki
+  name: mimir
 spec:
   instanceSelector:
     matchLabels:
       dashboards: "grafana"
   datasource:
-    name: loki
+    name: mimir
     access: proxy
-    type: loki
-    url: http://loki-gateway.loki.svc.cluster.local:80
+    type: prometheus
+    url: http://mimir-monolithic.mimir.svc.cluster.local:8080/prometheus
     jsonData:
       "httpHeaderName1": "X-Scope-OrgId"
     secureJsonData:
