@@ -1,0 +1,17 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
+metadata:
+  name: tempo
+spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  datasource:
+    name: tempo
+    access: proxy
+    type: tempo
+    url: http://tempo-mono.tempo.svc.cluster.local:3200
+    jsonData:
+      "httpHeaderName1": "X-Scope-OrgId"
+    secureJsonData:
+      "httpHeaderValue1": "admin"
