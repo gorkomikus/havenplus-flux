@@ -8,5 +8,6 @@ resources:
   - grafana.yaml
   - loki-datasource.yaml
   - mimir-datasource.yaml
+  - tempo-datasource.yaml
   - cnpg.yaml
   - namespaces.yaml
