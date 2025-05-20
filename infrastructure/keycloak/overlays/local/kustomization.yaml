@@ -6,4 +6,5 @@ resources:
   - sealed.yaml
 patches:
   - path: patches/helm-release.yaml
+  - path: patches/cnpg.yaml
   - path: patches/routes.yaml
