@@ -1,0 +1,55 @@
+Add piVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: s3-proxy
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: s3-proxy
+      version: "0.5.1"
+      sourceRef:
+        kind: HelmRepository
+        name: s3-proxy
+      interval: 12h
+  values:
+    s3:
+      credential: ChangeME
+      identity: velero
+    extraEnvVars:
+      - name: S3PROXY_ENDPOINT
+        value: http://0.0.0.0:8010
+    service:
+      port: 8010
+      type: LoadBalancer
+    target:
+      filesystem:
+        basedir: /data
+      provider: filesystem
+  # Unfortunately this option isn't configurable by the upstream Helm Chart.
+  postRenderers:
+    - kustomize:
+        patches:
+          - patch: |-
+              kind: Deployment
+              apiVersion: apps/v1
+              metadata:
+                name: s3-proxy
+              spec:
+                template:
+                  spec:
+                    containers:
+                      - name: s3-proxy
+                        volumeMounts:
+                          - mountPath: /data
+                            name: s3-data
+                        livenessProbe:
+                          tcpSocket:
+                            port: 8010
+                        readinessProbe:
+                          tcpSocket:
+                            port: 8010
+                    volumes:
+                      - name: s3-data
+                        persistentVolumeClaim:
+                          claimName: s3-data

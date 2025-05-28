@@ -1,0 +1,32 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: velero
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: velero
+      version: "do_override"
+      sourceRef:
+        kind: HelmRepository
+        name: velero
+      interval: 12h
+  values:
+    upgradeCRDs: true
+    metrics:
+      serviceMonitor:
+        enabled: false
+    credentials:
+      useSecret: true
+      name: "cloud-credentials"
+      secretContents:
+        cloud: |
+          [aws]
+          aws_access_key_id=velero
+          aws_secret_access_key=ChangeME
+    deployNodeAgent: true
+    snapshotsEnabled: false
+    defaultBackupStorageLocation: "aws"
+    uploaderType: "kopia"
+    defaultVolumesToFsBackup: true

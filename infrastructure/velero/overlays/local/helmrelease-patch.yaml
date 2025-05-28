@@ -1,0 +1,43 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: velero
+spec:
+  chart:
+    spec:
+      version: "8.3.0"
+  values:
+    initContainers:
+      - name: velero-plugin-for-azure
+        image: velero/velero-plugin-for-microsoft-azure:v1.11.1
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - mountPath: /target
+            name: plugins
+    configuration:
+      uploaderType: "kopia"
+      defaultVolumesToFsBackup: true
+      defaultBackupStorageLocation: "aws"
+      deployNodeAgent: true
+      snapshotsEnabled: false
+      logLevel: "warning"
+      backupStorageLocation: 
+      - name: "aws"
+        provider: "aws"
+        bucket: "velero-data"
+        default: true
+        credential:
+          name: "cloud-credentials"
+          key: "cloud"
+          secretContents:
+            cloud: |
+              [aws]
+              aws_access_key_id=velero
+              aws_secret_access_key=ChangeME
+        config: 
+          checksumAlgorithm: ""
+          region: "minio"
+          s3ForcePathStyle: "true"
+          s3Url: http://s3-proxy:8010
+          signatureVersion: "4"
+
