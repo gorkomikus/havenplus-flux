@@ -1,0 +1,9 @@
+apiVersion: tempo.grafana.com/v1alpha1
+kind: TempoMonolithic
+metadata:
+  name: mono
+spec:
+  storage:
+    traces:
+      backend: memory
+      size: 2Gi

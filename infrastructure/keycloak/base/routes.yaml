@@ -5,7 +5,7 @@ metadata:
 spec:
   parentRefs:
   - name: "set-in-overlay"
-    namespace: istio-ingress
+    namespace: istio-gateway
   hostnames:
   - "set-in-overlay"
   rules:

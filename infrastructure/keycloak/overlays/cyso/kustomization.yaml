@@ -1,9 +1,8 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: sealed-secrets
+namespace: keycloak
 resources:
   - ../../base
-  - static-key/static-key.yaml
+  - sealed-secret.yaml
 patches:
   - path: patches/helm-release.yaml
-  - path: patches/http-route.yaml

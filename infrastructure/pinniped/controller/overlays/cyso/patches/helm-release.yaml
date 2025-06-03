@@ -1,0 +1,26 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: pinniped
+spec:
+  values:
+    concierge:
+      credentialIssuerConfig: |
+        impersonationProxy:
+          mode: enabled
+          externalEndpoint: "pinniped.example.domain.tld:443"
+          service:
+            type: ClusterIP
+    supervisor:
+      enabled: true
+      service:
+        public:
+          type: ClusterIP
+      ingress:
+        enabled: true
+        ingressClassName: nginx
+        hostname: pinniped-supervisor.example.domain.tld
+        annotations:
+          nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+          nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+          nginx.ingress.kubernetes.io/ssl-redirect: "true"

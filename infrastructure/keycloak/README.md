@@ -33,3 +33,23 @@ spec:
   prune: true
   wait: true
 ```
+
+## SealedSecret
+
+```shell
+kubectl create secret generic keycloak \
+  --namespace keycloak \
+  --from-literal=KEYCLOAK_ADMIN_PASSWORD='YourSuperSecretPassword' \
+  --dry-run=client -o yaml > secret.yaml
+
+kubeseal \
+  --format yaml \
+  --name keycloak \
+  --namespace keycloak \
+  --controller-name=sealed-secrets-controller \
+  --controller-namespace=sealed-secrets \
+  < secret.yaml > sealed-secret.yaml
+
+git add sealed-secret.yaml
+rm secret.yaml
+```
