@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: trivy-operator
+spec:
+  releaseName: trivy-operator
+  interval: 30m
+  chart:
+    spec:
+      chart: trivy-operator
+      version: "set-in-overlay" # see https://artifacthub.io/packages/helm/trivy-operator/trivy-operator
+      sourceRef:
+        kind: HelmRepository
+        name: trivy-operator
+        namespace: trivy-system
+  values:
+    serviceMonitor:
+      enabled: true

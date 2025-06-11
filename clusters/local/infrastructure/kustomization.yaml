@@ -15,4 +15,5 @@ resources:
   - mimir.yaml
   - sealed-secrets.yaml
   - tempo.yaml
+  - trivy-operator.yaml
   - velero.yaml
