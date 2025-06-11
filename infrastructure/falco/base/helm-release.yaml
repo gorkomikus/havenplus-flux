@@ -1,0 +1,33 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: falco
+spec:
+  releaseName: falco
+  interval: 30m
+  chart:
+    spec:
+      chart: falco
+      version: "set-in-overlay" # see https://artifacthub.io/packages/helm/falcosecurity/falco
+      sourceRef:
+        kind: HelmRepository
+        name: falco
+        namespace: falco
+  values:
+    json_output: true
+    http_output:
+      enabled: true
+      url: "http://falco-falcosidekick.falco.svc.cluster.local:2801"
+    falcosidekick:
+      enabled: true
+      config:
+        customfields: "from:falcosidekick"
+        loki:
+          hostport: "http://loki.loki.svc.cluster.local:3100"
+          endpoint: "/loki/api/v1/push" 
+          tenant: "admin"
+    servicemonitor:
+      create: true
+    collectors:
+      kubernetes:
+        enabled: true

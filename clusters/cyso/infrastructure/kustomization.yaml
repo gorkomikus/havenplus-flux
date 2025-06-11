@@ -6,6 +6,7 @@ resources:
   - cloudnative-pg.yaml
   - cluster-resources.yaml
   - eck-operator.yaml
+  - falco.yaml
   - grafana.yaml
   - ingress-nginx.yaml
   - keycloak.yaml
