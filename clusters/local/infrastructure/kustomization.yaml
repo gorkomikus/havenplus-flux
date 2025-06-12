@@ -16,4 +16,4 @@ resources:
   - sealed-secrets.yaml
   - tempo.yaml
   - trivy-operator.yaml
-  - velero.yaml
+  # - velero.yaml # disable for now as this set-up is broken
