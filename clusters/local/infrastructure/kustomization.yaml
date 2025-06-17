@@ -13,6 +13,7 @@ resources:
   - kube-state-metrics.yaml
   - loki.yaml
   - mimir.yaml
+  - nfs-server-provisioner.yaml
   - sealed-secrets.yaml
   - tempo.yaml
   - trivy-operator.yaml
