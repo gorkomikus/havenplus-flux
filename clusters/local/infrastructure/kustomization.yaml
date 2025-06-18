@@ -13,8 +13,9 @@ resources:
   - kube-state-metrics.yaml
   - loki.yaml
   - mimir.yaml
+  - minio.yaml
   - nfs-server-provisioner.yaml
   - sealed-secrets.yaml
   - tempo.yaml
   - trivy-operator.yaml
-  # - velero.yaml # disable for now as this set-up is broken
+  - velero.yaml

@@ -1,7 +1,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: s3-proxy
+  name: minio-operator
 spec:
   interval: 24h
-  url: https://radar-base.github.io/radar-helm-charts
+  url: https://operator.min.io

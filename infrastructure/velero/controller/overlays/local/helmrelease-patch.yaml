@@ -5,39 +5,40 @@ metadata:
 spec:
   chart:
     spec:
-      version: "8.3.0"
+      version: "10.0.5"
   values:
     initContainers:
-      - name: velero-plugin-for-azure
-        image: velero/velero-plugin-for-microsoft-azure:v1.11.1
+      - name: velero-plugin-for-aws
+        image: velero/velero-plugin-for-aws:v1.11.1
         imagePullPolicy: IfNotPresent
         volumeMounts:
           - mountPath: /target
             name: plugins
+    credentials:
+      secretContents:
+        cloud: |
+          [default]
+          aws_access_key_id=minio
+          aws_secret_access_key=minio123
     configuration:
+      # insecureSkipTLSVerify: true
       uploaderType: "kopia"
       defaultVolumesToFsBackup: true
-      defaultBackupStorageLocation: "aws"
+      defaultBackupStorageLocation: "minio"
       deployNodeAgent: true
       snapshotsEnabled: false
       logLevel: "warning"
       backupStorageLocation: 
-      - name: "aws"
-        provider: "aws"
-        bucket: "velero-data"
+      - name: "minio"
         default: true
+        provider: "aws"
+        bucket: "velero"
         credential:
           name: "cloud-credentials"
           key: "cloud"
-          secretContents:
-            cloud: |
-              [aws]
-              aws_access_key_id=velero
-              aws_secret_access_key=ChangeME
         config: 
-          checksumAlgorithm: ""
           region: "minio"
           s3ForcePathStyle: "true"
-          s3Url: http://s3-proxy:8010
+          s3Url: http://minio.minio-generic-tenant.svc:80
           signatureVersion: "4"
 

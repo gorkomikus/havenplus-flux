@@ -20,11 +20,7 @@ spec:
     credentials:
       useSecret: true
       name: "cloud-credentials"
-      secretContents:
-        cloud: |
-          [aws]
-          aws_access_key_id=velero
-          aws_secret_access_key=ChangeME
+      secretContents: {} # set in overlay
     deployNodeAgent: true
     snapshotsEnabled: false
     defaultBackupStorageLocation: "aws"

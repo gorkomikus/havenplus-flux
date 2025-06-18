@@ -1,0 +1,13 @@
+---
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: tenant-demo-backup
+spec:
+  schedule: 0 0 * * *
+  skipImmediately: false
+  template:
+    includedNamespaces:
+    - tenant-demo
+    ttl: 168h0m0s
+

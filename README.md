@@ -7,7 +7,7 @@ The following instructions will spin up a local [Kind](https://kind.sigs.k8s.io/
 Use [asdf](https://asdf-vm.com/guide/getting-started.html) to ensure the correct versions of dependencies/tools.
 ```bash
 # in the root of this project:
-awk '{ system("asdf plugin-add " $1) }' < .tool-versions
+awk '{ system("asdf plugin add " $1) }' < .tool-versions
 asdf install
 ```
 

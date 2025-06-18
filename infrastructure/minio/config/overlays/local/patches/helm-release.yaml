@@ -1,0 +1,20 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: minio-generic-tenant
+spec:
+  chart:
+    spec:
+      version: "7.1.1"
+  values:
+    tenant:
+      name: minio-generic-tenant
+      pools:
+        - name: pool-0
+          servers: 1
+          volumesPerServer: 1
+          size: 3Gi
+      certificate:
+        requestAutoCert: false
+      buckets:
+        - name: velero
