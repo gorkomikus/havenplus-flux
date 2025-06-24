@@ -21,3 +21,6 @@ spec:
         - name: loki-chunks
         - name: loki-ruler
         - name: loki-admin
+        - name: mimir-blocks
+        - name: mimir-alertmanager
+        - name: mimir-ruler

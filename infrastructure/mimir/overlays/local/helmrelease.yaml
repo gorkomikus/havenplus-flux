@@ -17,6 +17,23 @@ spec:
 
     mimir:
       structuredConfig:
+        common:
+          storage:
+            backend: s3
+            s3:
+              endpoint: minio.minio-generic-tenant.svc:80
+              access_key_id: minio
+              secret_access_key: minio123
+              insecure: true
+        blocks_storage:
+          s3:
+            bucket_name: mimir-blocks
+        alertmanager_storage:
+          s3:
+            bucket_name: mimir-alertmanager
+        ruler_storage:
+          s3:
+            bucket_name: mimir-ruler
         limits:
           compactor_blocks_retention_period: 3d
 
@@ -34,8 +51,7 @@ spec:
       enabled: false
 
     minio:
-      enabled: true
-      replicas: 1
+      enabled: false
 
     alertmanager:
       enabled: false
