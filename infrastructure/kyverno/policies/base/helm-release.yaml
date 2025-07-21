@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kyverno-policies
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: kyverno-policies
+      version: set-in-overlay # set in overlay
+      sourceRef:
+        kind: HelmRepository
+        name: kyverno
+      interval: 12h
+  values:
+    validationFailureAction: Enforce

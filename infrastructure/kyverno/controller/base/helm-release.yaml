@@ -1,0 +1,14 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kyverno-controller
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: kyverno
+      version: set-in-overlay # set in overlay
+      sourceRef:
+        kind: HelmRepository
+        name: kyverno
+      interval: 12h
