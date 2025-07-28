@@ -4,17 +4,13 @@ namespace: alloy
 configMapGenerator:
   - name: alloy
     files:
-    - config.alloy
+    - config/generic.alloy
+    - config/logs.alloy
+    - config/metrics.alloy
+    - config/otel.alloy
     options:
       disableNameSuffixHash: true
 resources:
-  - http-rule.yaml
   - ../../base
 patches:
-  - path: helmrelease-patch.yaml
-    target:
-      kind: HelmRelease
-      name: alloy
-      namespace: alloy
-    options:
-      allowNameChange: true
+  - path: patches/helmrelease.yaml
