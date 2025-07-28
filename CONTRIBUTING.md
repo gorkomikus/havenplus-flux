@@ -21,17 +21,17 @@ We strongly encourage signing your commits with a [GPG key](https://docs.gitlab.
 ## Prepend your commit message with a type
 For your commit messages, please adhere to the [Conventional Commits specification](https://www.conventionalcommits.org/). Ensure that the first word of your commit message is the type. The type must be one of the following:
 
-**build**: Changes that affect the build system or external dependencies
-**chore**: Miscellaneous commits, e.g. modifying .gitignore or updating dependency versions
-**ci**: Changes to our CI configuration files and scripts
-**docs**: Documentation only changes
-**feat**: A new feature
-**fix**: A bug fix
-**perf**: A code change that improves performance
-**refactor**: A code change that neither fixes a bug nor adds a feature
-**revert**: Changes that revert other change
-**style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semicolons, etc.)
-**test**: Adding missing tests or correcting existing tests
+**build**: Changes that affect the build system or external dependencies  
+**chore**: Miscellaneous commits, e.g. modifying .gitignore or updating dependency versions  
+**ci**: Changes to our CI configuration files and scripts  
+**docs**: Documentation only changes  
+**feat**: A new feature  
+**fix**: A bug fix  
+**perf**: A code change that improves performance  
+**refactor**: A code change that neither fixes a bug nor adds a feature  
+**revert**: Changes that revert other change  
+**style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semicolons, etc.)  
+**test**: Adding missing tests or correcting existing tests  
 
 # Submitting a Merge Request
 Once ready, create a Merge Request targeting the upstream repository. Please ensure that the MR description and/or your commit message includes a [reference](https://docs.gitlab.com/user/project/issues/crosslinking_issues/) to the relevant GitLab issue that your MR resolves.
