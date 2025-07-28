@@ -11,6 +11,7 @@ resources:
   - ingress-nginx.yaml
   - keycloak.yaml
   - kube-state-metrics.yaml
+  - kyverno.yaml
   - loki.yaml
   - mimir.yaml
   - nfs-server-provisioner.yaml
