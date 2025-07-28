@@ -10,6 +10,7 @@ resources:
   - grafana.yaml
   - ingress-nginx.yaml
   - keycloak.yaml
+  - kube-state-metrics.yaml
   - loki.yaml
   - mimir.yaml
   - nfs-server-provisioner.yaml
