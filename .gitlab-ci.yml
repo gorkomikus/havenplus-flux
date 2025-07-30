@@ -12,6 +12,20 @@ kustomize:
       kubectl kustomize "$overlay_dir" > /dev/null;
       done
 
+commitlint:
+  image: node:22.17.1
+  stage: test
+  variables:
+    GIT_DEPTH: '0'
+  before_script:
+  - npm install -g commitlint @commitlint/{config-conventional,cli}
+  script:
+  - COMMIT_LINT_FROM="$(git merge-base origin/${CI_DEFAULT_BRANCH:-main} HEAD)"
+  - echo COMMIT_LINT_FROM=$COMMIT_LINT_FROM
+  - npx commitlint --from=$COMMIT_LINT_FROM
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+
 include:
   # https://gitlab.com/gitlab-com/gl-infra/renovate/renovate-runner/-/blob/main/templates/renovate.gitlab-ci.yml?ref_type=heads
   - project: 'renovate-bot/renovate-runner'

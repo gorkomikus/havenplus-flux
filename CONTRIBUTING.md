@@ -32,6 +32,13 @@ For your commit messages, please adhere to the [Conventional Commits specificati
 **revert**: Changes that revert other change  
 **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semicolons, etc.)  
 **test**: Adding missing tests or correcting existing tests  
+  
+Conventional commits are **enforced** in this project's CI pipeline for all Merge Requests. In case you also want to check this locally, then install the commitlint hook:
+```
+npm install  @commitlint/{config-conventional,cli}
+echo 'npx commitlint --edit' >> .git/hooks/commit-msg
+chmod +x .git/hooks/commit-msg
+```
 
 # Submitting a Merge Request
 Once ready, create a Merge Request targeting the upstream repository. Please ensure that the MR description and/or your commit message includes a [reference](https://docs.gitlab.com/user/project/issues/crosslinking_issues/) to the relevant GitLab issue that your MR resolves.
