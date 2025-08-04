@@ -1,0 +1,1 @@
+Please select either the `Bug` or `Feature` template from the `Description` dropdown above. If your request does not fit into either of these categories, feel free to submit your request in free format here.
