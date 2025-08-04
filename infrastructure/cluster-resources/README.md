@@ -1,1 +1,0 @@
-This directory contains resources which are cluster-wide, e.g. `CRDs` and `StorageClasses`. Cluster-resources are deployed before the actual platform-services, as the latter often depends on specific cluster-resources. This dependency is enforced through Flux's `dependsOn` construct in the relevant kustomizations.
