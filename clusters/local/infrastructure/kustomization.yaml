@@ -6,6 +6,7 @@ resources:
   - cloudnative-pg.yaml
   - cluster-resources.yaml
   - eck-operator.yaml
+  - external-secrets.yaml
   - falco.yaml
   - grafana.yaml
   - istio.yaml
