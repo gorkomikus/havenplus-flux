@@ -15,14 +15,4 @@ spec:
   values:
     validationFailureAction: Enforce
     podSecurityStandard: "restricted"
-    policyExclude:
-      disallow-host-path:
-        any:
-        - resources:
-            namespaces:
-            - falco
-      disallow-privileged-containers:
-        any:
-        - resources:
-            names:
-            - "falco"
+    policyExclude: {} # add relevant policy excludes in the concerning overlay
