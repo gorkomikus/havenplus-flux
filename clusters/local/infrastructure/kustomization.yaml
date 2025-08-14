@@ -12,6 +12,7 @@ resources:
   - istio.yaml
   - keycloak.yaml
   - kube-state-metrics.yaml
+  - kyverno.yaml
   - loki.yaml
   - mimir.yaml
   - minio.yaml

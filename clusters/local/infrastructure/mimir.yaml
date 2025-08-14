@@ -15,4 +15,5 @@ spec:
   dependsOn:
     - name: cluster-resources
     - name: minio-config
+    - name: kyverno-policies
     

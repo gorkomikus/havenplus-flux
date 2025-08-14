@@ -48,3 +48,23 @@ spec:
         create: false
         name: "<override>"
         key: "<override>"
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop: ["ALL"]
+        seccompProfile:
+          type: RuntimeDefault
+        runAsNonRoot: true
+        runAsUser: 473
+        runAsGroup: 473
+    configReloader:
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop: ["ALL"]
+        seccompProfile:
+          type: RuntimeDefault
+        runAsNonRoot: true
+        # this is the UID of the "nobody" user that the configReloader image runs as
+        runAsUser: 65534
+        runAsGroup: 65534

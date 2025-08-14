@@ -27,3 +27,7 @@ spec:
     metrics:
       serviceMonitor:
         enabled: true
+    containerSecurityContext:
+      allowPrivilegeEscalation: false
+      seccompProfile:
+        type: RuntimeDefault

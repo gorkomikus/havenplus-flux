@@ -3,3 +3,6 @@ kind: Kustomization
 namespace: kyverno
 resources:
   - ../../base
+patches:
+  - path: patches/helm-release.yaml
+

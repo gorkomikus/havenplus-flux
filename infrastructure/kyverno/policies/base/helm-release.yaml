@@ -14,3 +14,15 @@ spec:
       interval: 12h
   values:
     validationFailureAction: Enforce
+    podSecurityStandard: "restricted"
+    policyExclude:
+      disallow-host-path:
+        any:
+        - resources:
+            namespaces:
+            - falco
+      disallow-privileged-containers:
+        any:
+        - resources:
+            names:
+            - "falco"

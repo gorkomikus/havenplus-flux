@@ -12,3 +12,7 @@ spec:
         kind: HelmRepository
         name: grafana-operator
       interval: 1m
+  values:
+    securityContext:
+      seccompProfile:
+        type: RuntimeDefault

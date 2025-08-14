@@ -7,3 +7,7 @@ spec:
     traces:
       backend: memory
       size: 2Gi
+  podSecurityContext:
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault

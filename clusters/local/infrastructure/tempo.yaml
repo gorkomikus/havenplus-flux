@@ -16,6 +16,7 @@ spec:
   dependsOn:
     - name: cluster-resources
     - name: cert-manager-controller
+    - name: kyverno-policies
 
 ---
 # CONFIG

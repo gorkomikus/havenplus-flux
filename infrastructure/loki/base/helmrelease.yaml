@@ -39,6 +39,9 @@ spec:
           admin: loki
       storage_config: {} # set_in_overlay
       schemaConfig: {} # set_in_overlay
+      podSecurityContext:
+        seccompProfile:
+          type: RuntimeDefault
     lokiCanary:
       push: true
     write:
@@ -50,3 +53,19 @@ spec:
     backend:
       extraArgs:
         - -config.expand-env=true
+    gateway:
+      containerSecurityContext:
+        seccompProfile:
+          type: RuntimeDefault
+    adminApi:
+      containerSecurityContext:
+        seccompProfile:
+          type: RuntimeDefault
+    memcached:
+      containerSecurityContext:
+        seccompProfile:
+          type: RuntimeDefault
+    memcachedExporter:
+      containerSecurityContext:
+        seccompProfile:
+          type: RuntimeDefault

@@ -15,6 +15,7 @@ spec:
   wait: true
   dependsOn:
     - name: cluster-resources
+    - name: kyverno-policies
 
 ---
 # ISTIO-GATEWAY

@@ -22,7 +22,33 @@ spec:
       name: "cloud-credentials"
       secretContents: {} # set in overlay
     deployNodeAgent: true
+    nodeAgent:
+      containerSecurityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop: ["ALL"]
+        seccompProfile:
+          type: RuntimeDefault
     snapshotsEnabled: false
     defaultBackupStorageLocation: "aws"
     uploaderType: "kopia"
     defaultVolumesToFsBackup: true
+    containerSecurityContext: 
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop: ["ALL"]
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      runAsUser: 1001
+      seccompProfile:
+        type: RuntimeDefault
+    kubectl:
+      containerSecurityContext: 
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop: ["ALL"]
+        readOnlyRootFilesystem: true
+        runAsNonRoot: true
+        runAsUser: 1001
+        seccompProfile:
+          type: RuntimeDefault

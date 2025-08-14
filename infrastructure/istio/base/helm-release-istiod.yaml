@@ -17,3 +17,5 @@ spec:
       env:
         # for now required for Gateway-API TLSRoute support
         PILOT_ENABLE_ALPHA_GATEWAY_API: true
+    seccompProfile:
+      type: RuntimeDefault

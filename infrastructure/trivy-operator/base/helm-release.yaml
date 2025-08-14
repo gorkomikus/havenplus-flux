@@ -16,3 +16,11 @@ spec:
   values:
     serviceMonitor:
       enabled: true
+    securityContext:
+      seccompProfile:
+        type: RuntimeDefault
+      runAsNonRoot: true
+    trivyOperator:
+      scanJobPodTemplateContainerSecurityContext:
+        seccompProfile:
+          type: RuntimeDefault
