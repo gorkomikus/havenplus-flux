@@ -4,3 +4,4 @@ namespace: istio-gateway
 resources:
   - ../../base
   - public-gateway.yaml
+  - hpa.yaml
