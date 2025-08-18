@@ -7,7 +7,7 @@ spec:
   chart:
     spec:
       chart: pinniped
-      version: 2.4.22 # see https://artifacthub.io/packages/helm/bitnami/pinniped
+      version: 2.4.23 # see https://artifacthub.io/packages/helm/bitnami/pinniped
       sourceRef:
         kind: HelmRepository
         name: bitnami
