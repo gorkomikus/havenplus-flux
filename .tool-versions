@@ -1,5 +1,5 @@
 flux2 2.6.4
 task 3.41.0
-kind 0.29.0
+kind 0.30.0
 kubectl 1.33.4
 velero 1.16.1
