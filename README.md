@@ -1,9 +1,9 @@
 # GitOps-FluxCD Reference Implementation 
 
-ℹ️ **You can find detailed documentation at [the official HavenPlus documentation website](https://havenplus.commonground.nl/docs/intro)** ℹ️
+ℹ️ **You can find detailed documentation at [the official HavenPlus documentation website](https://havenplus.commonground.nl/docs/overview)** ℹ️
 
 ## Getting Started
-See our [Getting Started](https://havenplus.commonground.nl/docs/gitops-flux/getting-started) guide.
+See our [Getting Started](https://havenplus.commonground.nl/docs/getting-started) guide.
 
 ## Contributing
 Merge Requests are more than welcome! Please consult our [CONTRIBUTING guide](./CONTRIBUTING.md) for more information.
