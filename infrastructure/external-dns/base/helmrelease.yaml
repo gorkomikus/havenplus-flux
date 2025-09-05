@@ -1,0 +1,39 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: external-dns
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: external-dns
+      version: 1.18.0  # see https://artifacthub.io/packages/helm/external-dns/external-dns
+      sourceRef:
+        kind: HelmRepository
+        name: external-dns
+      interval: 12h
+  values:
+    provider:
+      name: do_override
+    policy: sync
+    txtPrefix: external-dns-
+    domainFilters: [] # external-dns only targets domains in this list. Set in overlay
+    sources:
+      - gateway-httproute
+      - gateway-tlsroute
+      - gateway-tcproute
+    rbac:
+      additionalPermissions:
+        - apiGroups: ["gateway.networking.k8s.io"]
+          resources: ["gateways", "httproutes", "tlsroutes", "tcproutes"] 
+          verbs: ["get", "watch", "list"]
+    extraVolumes: [] # set in overlay if required
+      # - name: provider-config-file
+      #   secret:
+      #     secretName: "do_override"
+    extraVolumeMounts: [] # set in overlay if required
+      # - name: provider-config-file
+      #   mountPath: /etc/kubernetes
+      #   readOnly: true
+    serviceMonitor:
+      enabled: true
