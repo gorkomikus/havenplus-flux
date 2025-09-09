@@ -98,3 +98,4 @@ spec:
         - resources:
             namespaces:
             - falco
+            - local-path-storage
