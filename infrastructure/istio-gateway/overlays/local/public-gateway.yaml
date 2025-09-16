@@ -2,9 +2,6 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
   name: public-gateway
-  annotations:
-    service.beta.kubernetes.io/port_80_health-probe_protocol: "TCP"
-    service.beta.kubernetes.io/port_443_health-probe_protocol: "TCP"
 spec:
   gatewayClassName: istio
   listeners:
@@ -22,7 +19,7 @@ spec:
     tls:
       mode: Terminate
       certificateRefs:
-        - name: dev-wildcard-tls
+        - name: havenplus-local-tls-secret
           kind: Secret
     allowedRoutes:
       kinds:
