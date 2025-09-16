@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: alloy
+  namespace: alloy
+spec:
+  chart:
+    spec:
+      version: "0.7.0"
+  values:
+    controller:
+      type: daemonset
+    alloy:
+      stabilityLevel: experimental
+      configMap:
+        name: alloy
+        key: .

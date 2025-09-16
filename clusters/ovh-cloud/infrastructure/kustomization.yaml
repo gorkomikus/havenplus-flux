@@ -7,13 +7,18 @@ resources:
   - cluster-resources.yaml
   - eck-operator.yaml
   - external-secrets.yaml
+  - falco.yaml
   - grafana.yaml
   - headlamp.yaml
+  - ingress-nginx.yaml
   - istio.yaml
   - keycloak.yaml
+  - kube-state-metrics.yaml
+  - kyverno.yaml
   - loki.yaml
   - mimir.yaml
   - pinniped.yaml
   - sealed-secrets.yaml
   - tempo.yaml
+  - trivy-operator.yaml
   - velero.yaml

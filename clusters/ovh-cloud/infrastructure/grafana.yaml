@@ -1,7 +1,8 @@
+# CONTROLLER
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: keycloak-operator
+  name: grafana-controller
   namespace: flux-system
 spec:
   interval: 15m0s
@@ -9,20 +10,19 @@ spec:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/keycloak/operator/overlays/ovh-cloud
+  path: ./infrastructure/grafana/controller/overlays/ovh-cloud
   prune: true
   wait: true
   dependsOn:
     - name: cluster-resources
-    - name: cloudnative-pg
-    - name: sealed-secrets
     - name: kyverno-policies
 
 ---
+# CONFIG
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: keycloak-instances
+  name: grafana-config
   namespace: flux-system
 spec:
   interval: 15m0s
@@ -30,8 +30,10 @@ spec:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/keycloak/instances/overlays/ovh-cloud
+  path: ./infrastructure/grafana/config/overlays/ovh-cloud
   prune: true
   wait: true
   dependsOn:
-    - name: keycloak-operator
+    - name: cluster-resources
+    - name: grafana-controller
+    - name: cloudnative-pg

@@ -1,0 +1,8 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: pinniped-supervisor
+spec:
+  commonName: "pinniped-supervisor.example.domain.tld"
+  dnsNames:
+    - "pinniped-supervisor.example.domain.tld"

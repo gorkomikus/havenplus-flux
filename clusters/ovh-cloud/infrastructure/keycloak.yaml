@@ -9,7 +9,7 @@ spec:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/keycloak/operator/overlays/ovh-cloud
+  path: ./infrastructure/keycloak/operator/overlays/azure
   prune: true
   wait: true
   dependsOn:
@@ -25,13 +25,16 @@ metadata:
   name: keycloak-instances
   namespace: flux-system
 spec:
-  interval: 15m0s
+  interval: 1m0s # todo: refer to havenplus docs which describes the reason of this low interval
   sourceRef:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/keycloak/instances/overlays/ovh-cloud
+  path: ./infrastructure/keycloak/instances/overlays/azure
   prune: true
   wait: true
   dependsOn:
-    - name: keycloak-operator
+    - name: cluster-resources
+    - name: cloudnative-pg
+    - name: sealed-secrets
+    - name: kyverno-policies
