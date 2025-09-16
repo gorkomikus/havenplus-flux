@@ -1,0 +1,29 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: keycloak-operator
+spec:
+  interval: 30m
+  # Retry until the watched Keycloak instances namespaces are available
+  install:
+    remediation:
+      retries: 10
+  upgrade:
+    remediation:
+      retries: 10
+  chart:
+    spec:
+      chart: keycloak-operator
+      version: "1.0.20250904000523" # see https://gitlab.com/kubitus-project/external-helm-charts/keycloak-operator/-/packages
+      sourceRef:
+        kind: HelmRepository
+        name: keycloak-operator
+      interval: 12h
+  values:
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop: ["ALL"]
+      seccompProfile:
+        type: RuntimeDefault
+      runAsNonRoot: true

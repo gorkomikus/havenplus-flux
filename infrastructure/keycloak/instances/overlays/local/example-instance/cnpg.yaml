@@ -3,7 +3,8 @@ kind: Cluster
 metadata:
   name: keycloak-pg-cluster
 spec:
-  instances: 2
+  instances: 1
+  enablePDB: false
   bootstrap:
     initdb:
       database: keycloak

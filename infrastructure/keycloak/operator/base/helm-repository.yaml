@@ -1,0 +1,10 @@
+# As the Keycloak project doesn't provide an official Helm chart for the keycloak-operator
+# we are using this one (https://github.com/keycloak/keycloak/issues/16210) It's a simple 
+# chart and it seems well maintained: https://gitlab.com/kubitus-project/external-helm-charts/keycloak-operator
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: keycloak-operator
+spec:
+  interval: 24h
+  url: https://gitlab.com/api/v4/projects/50848788/packages/helm/stable
