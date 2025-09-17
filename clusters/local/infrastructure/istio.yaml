@@ -34,5 +34,5 @@ spec:
   prune: true
   wait: true
   dependsOn:
-    - name: cluster-resources
+    - name: istio
     

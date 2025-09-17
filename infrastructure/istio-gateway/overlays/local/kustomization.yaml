@@ -3,6 +3,6 @@ kind: Kustomization
 namespace: istio-gateway
 resources:
   - ../../base
+  - sealed.yaml
   - public-gateway.yaml
   - hpa.yaml
-  - tls-certs.yaml

@@ -1,7 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - namespace.yaml
-  - helm-release-istio-base.yaml
   - helm-release-istiod.yaml
-  - helm-repository.yaml
+  - helm-release-cni.yaml
+  - helm-release-ztunnel.yaml

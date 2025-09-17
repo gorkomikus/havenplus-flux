@@ -12,3 +12,15 @@ spec:
         kind: HelmRepository
         name: kyverno
       interval: 12h
+  values:
+      config:
+        webhooks:
+          namespaceSelector:
+            matchExpressions:
+            - key: kubernetes.io/metadata.name
+              operator: NotIn
+              values:
+                - default
+                - kube-system
+                - istio-ingress
+        excludeKyvernoNamespace: true
