@@ -3,4 +3,4 @@ kind: Namespace
 metadata:
   name: set-in-overlay
   labels: 
-    istio.io/rev: set-in-overlay
+    istio.io/dataplane-mode: ambient

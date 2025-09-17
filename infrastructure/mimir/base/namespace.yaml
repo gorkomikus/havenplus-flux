@@ -3,4 +3,4 @@ kind: Namespace
 metadata:
   name: mimir
   labels: 
-    istio.io/rev: stable
+    istio.io/dataplane-mode: ambient

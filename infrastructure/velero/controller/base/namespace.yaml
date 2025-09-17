@@ -3,4 +3,4 @@ kind: Namespace
 metadata:
   name: velero
   labels: 
-    istio.io/rev: stable
+    istio.io/dataplane-mode: ambient

@@ -21,6 +21,7 @@ spec:
         - resources:
             namespaces:
             - falco
+            - istio-system
             - local-path-storage
             - trivy-system
             - velero # needed for the node-agent daemonset which does file-system-backup
@@ -61,6 +62,7 @@ spec:
         any:
         - resources:
             namespaces: 
+            - istio-system
             - local-path-storage
             - nfs-server-provisioner # needs additional capabilities to function properly
             - falco
@@ -68,12 +70,14 @@ spec:
         any:
         - resources:
             namespaces:
+            - istio-system
             - local-path-storage
             - falco
       require-run-as-non-root-user:
         any:
         - resources:
             namespaces:
+            - istio-system
             - trivy-system
             - nfs-server-provisioner
             - falco
@@ -82,6 +86,7 @@ spec:
         any:
         - resources:
             namespaces:
+            - istio-system
             - local-path-storage
             - trivy-system # trivy needs to be root in order to be able to scan filesystems
             - nfs-server-provisioner
@@ -93,9 +98,14 @@ spec:
             namespaces:
             - local-path-storage
             - falco
+        - resources:
+            selector:
+              matchLabels:
+                app.kubernetes.io/name: ztunnel
       restrict-volume-types:
         any:
         - resources:
             namespaces:
+            - istio-system
             - falco
             - local-path-storage

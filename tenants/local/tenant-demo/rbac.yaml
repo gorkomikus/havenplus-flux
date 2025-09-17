@@ -4,6 +4,7 @@ kind: Namespace
 metadata:
   labels:
     toolkit.fluxcd.io/tenant: tenant-demo
+    istio.io/dataplane-mode: ambient
   name: tenant-demo
 ---
 apiVersion: v1

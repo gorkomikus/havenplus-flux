@@ -5,6 +5,13 @@ resources:
   - https://github.com/grafana/tempo-operator/releases/download/v0.17.1/tempo-operator.yaml
 patches:
 - target:
+    kind: Namespace
+    name: tempo-operator-system
+  patch: |-
+    - op: add
+      path: /metadata/labels/istio.io~1dataplane-mode
+      value: ambient
+- target:
     kind: Deployment
     name: tempo-operator-controller
   patch: |-

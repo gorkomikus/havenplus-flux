@@ -3,4 +3,4 @@ kind: Namespace
 metadata:
   name: loki
   labels: 
-    istio.io/rev: stable
+    istio.io/dataplane-mode: ambient
