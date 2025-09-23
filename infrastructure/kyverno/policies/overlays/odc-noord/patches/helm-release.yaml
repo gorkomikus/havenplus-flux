@@ -141,6 +141,7 @@ spec:
         any:
         - resources:
             namespaces:
+            - istio-gateway # Gateway API lacks seccomp profile configuration, but a mutating admission could enable it later
             - flux-system # https://github.com/fluxcd/source-controller/issues/582
             - calico-*
             - openshift-*

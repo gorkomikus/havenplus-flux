@@ -96,6 +96,7 @@ spec:
         any:
         - resources:
             namespaces:
+            - istio-gateway # Gateway API lacks seccomp profile configuration, but a mutating admission could enable it later
             - local-path-storage
             - falco
         - resources:

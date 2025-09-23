@@ -5,4 +5,4 @@ resources:
   - ../../base
   - public-gateway.yaml
   - hpa.yaml
-  - tls-certs.yaml
+  - sealed.yaml
