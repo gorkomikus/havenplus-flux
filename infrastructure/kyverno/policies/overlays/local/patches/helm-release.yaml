@@ -110,3 +110,4 @@ spec:
             - istio-system
             - falco
             - local-path-storage
+            - velero # needed for the node-agent daemonset which does file-system-backup

@@ -4,4 +4,4 @@ namespace: velero
 resources:
   - ../../base
 patches:
-  - path: helmrelease-patch.yaml
+  - path: patches/helmrelease.yaml
