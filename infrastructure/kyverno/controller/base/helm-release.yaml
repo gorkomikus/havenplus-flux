@@ -12,3 +12,9 @@ spec:
         kind: HelmRepository
         name: kyverno
       interval: 12h
+  values:
+    features:
+      backgroundScan:
+        # enforce resource filters in background scans to avoid flooding event logs
+        # with entries for namespaces already excluded in the admission flow.
+        skipResourceFilters: false 
