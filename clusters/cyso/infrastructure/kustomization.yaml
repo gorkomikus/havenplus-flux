@@ -9,6 +9,7 @@ resources:
   - external-secrets.yaml
   - falco.yaml
   - grafana.yaml
+  - headlamp.yaml
   - ingress-nginx.yaml
   - keycloak.yaml
   - kube-state-metrics.yaml

@@ -8,6 +8,7 @@ resources:
   - eck-operator.yaml
   - external-secrets.yaml
   - grafana.yaml
+  - headlamp.yaml
   - istio.yaml
   - keycloak.yaml
   - loki.yaml
