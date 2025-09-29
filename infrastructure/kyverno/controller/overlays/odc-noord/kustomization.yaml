@@ -4,5 +4,3 @@ namespace: kyverno
 resources:
   - ../../base
   - scc.yaml
-patches:
-  - path: patches/helm-release.yaml

@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: trivy-operator
-      version: "set-in-overlay" # see https://artifacthub.io/packages/helm/trivy-operator/trivy-operator
+      version: "0.28.1" # see https://artifacthub.io/packages/helm/trivy-operator/trivy-operator
       sourceRef:
         kind: HelmRepository
         name: trivy-operator

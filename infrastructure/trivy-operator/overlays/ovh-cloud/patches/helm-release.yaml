@@ -1,8 +1,0 @@
-apiVersion: helm.toolkit.fluxcd.io/v2
-kind: HelmRelease
-metadata:
-  name: trivy-operator
-spec:
-  chart:
-    spec:
-      version: "0.28.1" # see https://artifacthub.io/packages/helm/trivy-operator/trivy-operator

@@ -3,5 +3,3 @@ kind: Kustomization
 namespace: falco
 resources:
   - ../../base
-patches:
-  - path: patches/helm-release.yaml

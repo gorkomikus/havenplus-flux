@@ -3,5 +3,3 @@ kind: Kustomization
 namespace: trivy-system
 resources:
   - ../../base
-patches:
-  - path: patches/helm-release.yaml
