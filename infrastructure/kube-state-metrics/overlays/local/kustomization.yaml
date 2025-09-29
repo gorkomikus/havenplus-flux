@@ -4,4 +4,4 @@ namespace: kube-state-metrics
 resources:
   - ../../base
 patches:
-  - path: helmrelease-patch.yaml
+  - path: patches/helmrelease.yaml

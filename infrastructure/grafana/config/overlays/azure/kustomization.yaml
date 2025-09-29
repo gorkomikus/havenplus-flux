@@ -6,9 +6,4 @@ resources:
   - sealed.yaml
   - routes.yaml
 patches:
-  - path: grafana-patch.yaml
-    target:
-      kind: Grafana
-      name: grafana
-    options:
-      allowNameChange: true
+  - path: patches/grafana.yaml

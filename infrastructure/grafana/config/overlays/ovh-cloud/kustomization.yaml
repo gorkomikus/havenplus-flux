@@ -4,5 +4,5 @@ namespace: grafana
 resources:
   - ../../base
 patches:
-  - path: grafana-patch.yaml
-  - path: cnpg-patch.yaml
+  - path: patches/grafana.yaml
+  - path: patches/cnpg.yaml

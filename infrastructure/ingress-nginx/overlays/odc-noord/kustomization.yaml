@@ -6,6 +6,3 @@ resources:
   - scc.yaml
 patches:
   - path: ./patches/helm-release.yaml
-    target:
-      kind: HelmRelease
-      name: ingress-nginx

@@ -13,10 +13,4 @@ configMapGenerator:
 resources:
   - ../../base
 patches:
-  - path: helmrelease-patch.yaml
-    target:
-      kind: HelmRelease
-      name: alloy
-      namespace: alloy
-    options:
-      allowNameChange: true
+  - path: patches/helmrelease.yaml

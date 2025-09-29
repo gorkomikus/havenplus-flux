@@ -4,8 +4,4 @@ namespace: loki
 resources:
   - ../../base
 patches:
-  - path: helmrelease-patch.yaml
-    target:
-      kind: HelmRelease
-      name: loki
-      namespace: loki
+  - path: patches/helmrelease.yaml
