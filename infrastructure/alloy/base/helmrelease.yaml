@@ -7,7 +7,7 @@ spec:
   chart:
     spec:
       chart: alloy
-      version: "<override>"
+      version: "0.7.0"
       sourceRef:
         kind: HelmRepository
         name: alloy

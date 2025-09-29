@@ -7,7 +7,7 @@ spec:
   chart:
     spec:
       chart: sealed-secrets
-      version: "set-in-overlay"
+      version: "2.16.2"
       sourceRef:
         kind: HelmRepository
         name: sealed-secrets

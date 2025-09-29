@@ -7,7 +7,7 @@ spec:
   chart:
     spec:
       chart: mimir-distributed
-      version: "do_override"
+      version: "5.5.1"
       sourceRef:
         kind: HelmRepository
         name: mimir

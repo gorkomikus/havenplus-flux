@@ -4,10 +4,6 @@ metadata:
   name: external-dns
 spec:
   interval: 30m
-  chart:
-    spec:
-      chart: external-dns
-      version: 1.18.0  # see https://artifacthub.io/packages/helm/external-dns/external-dns
   values:
     provider:
       name: azure

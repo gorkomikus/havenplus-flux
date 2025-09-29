@@ -3,9 +3,6 @@ kind: HelmRelease
 metadata:
   name: sealed-secrets
 spec:
-  chart:
-    spec:
-      version: "2.16.2"
   values:
     metrics:
       serviceMonitor:

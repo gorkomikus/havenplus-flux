@@ -3,9 +3,6 @@ kind: HelmRelease
 metadata:
   name: alloy
 spec:
-  chart:
-    spec:
-      version: "0.7.0"
   values:
     controller:
       type: daemonset

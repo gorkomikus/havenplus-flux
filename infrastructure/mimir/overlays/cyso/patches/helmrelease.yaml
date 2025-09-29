@@ -3,9 +3,6 @@ kind: HelmRelease
 metadata:
   name: mimir
 spec:
-  chart:
-    spec:
-      version: "5.5.1"
   values:
     global:
       extraEnvFrom:
