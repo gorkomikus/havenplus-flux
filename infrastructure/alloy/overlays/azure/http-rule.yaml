@@ -3,7 +3,6 @@ apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
   name: http_error_hourly
-  namespace: alloy
   labels:
     log_to_alert: "yes"
 spec:

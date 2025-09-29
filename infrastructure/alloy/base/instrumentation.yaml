@@ -2,7 +2,6 @@ apiVersion: opentelemetry.io/v1alpha1
 kind: Instrumentation
 metadata:
   name: rolldice
-  namespace: alloy
 spec:
   exporter:
     endpoint: http://alloy.alloy:4318

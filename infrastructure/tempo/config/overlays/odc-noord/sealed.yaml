@@ -4,7 +4,6 @@ kind: SealedSecret
 metadata:
   creationTimestamp: null
   name: s3-credentials
-  namespace: tempo
   labels:
     havenplus.commonground.nl/sealed-secrets: ""
 spec:
