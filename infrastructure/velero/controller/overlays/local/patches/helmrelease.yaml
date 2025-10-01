@@ -3,9 +3,6 @@ kind: HelmRelease
 metadata:
   name: velero
 spec:
-  chart:
-    spec:
-      version: "10.1.3"
   values:
     initContainers:
       - name: velero-plugin-for-aws
@@ -51,4 +48,3 @@ spec:
           s3ForcePathStyle: "true"
           s3Url: http://minio.minio-generic-tenant.svc:80
           signatureVersion: "4"
-
