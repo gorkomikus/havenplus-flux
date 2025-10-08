@@ -9,5 +9,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: ./tenants/local/
+  path: ./tenants/tenant-demo/
   prune: true
+  dependsOn:
+    - name: kyverno-policies
