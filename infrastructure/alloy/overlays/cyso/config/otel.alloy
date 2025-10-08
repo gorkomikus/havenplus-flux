@@ -48,7 +48,7 @@ otelcol.exporter.loki "loki" {
 // Send traces to Tempo
 otelcol.exporter.otlp "tempo" {
   client {
-    endpoint = "http://tempo-mono.tempo.svc.cluster.local:4317"
+    endpoint = "http://tempo-ts-distributor.tempo.svc.cluster.local:4317"
     tls {
       insecure = true
       insecure_skip_verify = true

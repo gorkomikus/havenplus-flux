@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: mimir
 resources:
   - ../../base
-  # - sealed.yaml
+  - sealed.yaml
 patches:
   - path: patches/helmrelease.yaml
   

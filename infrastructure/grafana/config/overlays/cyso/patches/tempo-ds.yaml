@@ -1,0 +1,7 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
+metadata:
+  name: tempo
+spec:
+  datasource:
+    url: http://tempo-ts-query-frontend.tempo.svc.cluster.local:3200

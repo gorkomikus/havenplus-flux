@@ -5,3 +5,5 @@ resources:
   - ../../base
   # Custom Kyverno policies:
   # - ../../base/custom/my-custom-policy.yaml
+patches:
+  - path: patches/helm-release.yaml

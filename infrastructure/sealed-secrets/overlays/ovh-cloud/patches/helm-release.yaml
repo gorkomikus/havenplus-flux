@@ -16,3 +16,11 @@ spec:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt-production
       tls: true
+    resourcesPreset: "medium"
+    readinessProbe:
+      enabled: true
+      initialDelaySeconds: 90
+      periodSeconds: 10
+      timeoutSeconds: 1
+      failureThreshold: 3
+      successThreshold: 1
