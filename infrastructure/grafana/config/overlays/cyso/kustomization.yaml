@@ -6,5 +6,5 @@ resources:
 patches:
   - path: patches/grafana.yaml
   - path: patches/cnpg.yaml
-  - path: mimir-ds.yaml
-  - path: tempo-ds.yaml
+  - path: patches/mimir-ds.yaml
+  - path: patches/tempo-ds.yaml
