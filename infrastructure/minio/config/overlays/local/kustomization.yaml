@@ -5,3 +5,7 @@ resources:
   - ../../base
 patches:
   - path: patches/helm-release.yaml
+    target: 
+      name: minio-tenant
+    options:
+      allowNameChange: true
