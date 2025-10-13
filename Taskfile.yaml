@@ -94,9 +94,10 @@ tasks:
     desc: "Deploy a bootstrap Kustomization for the local Kind cluster."
     cmds:
       - |
-        flux create kustomization bootstrap \
+        flux create kustomization flux-system \
           --source=GitRepository/flux-system \
-          --path=clusters/local/flux-system
+          --path=clusters/local/flux-system \
+          --prune=true
       - echo -e "\n\n🚀 Created FluxCD bootstrap configuration 🚀"
       - echo -e "👉 Workloads configured in the given repository will now be deployed to the local Kind cluster."
       - echo -e "👉 Run the command 'flux get all' to verify the status."
