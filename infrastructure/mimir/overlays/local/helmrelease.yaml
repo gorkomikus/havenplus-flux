@@ -4,6 +4,14 @@ metadata:
   name: mimir
 spec:
   interval: 30m
+  install:
+    strategy: 
+      name: RetryOnFailure
+      retryInterval: 2m
+  upgrade:
+    strategy: 
+      name: RetryOnFailure
+      retryInterval: 2m
   chart:
     spec:
       chart: ./operations/helm/charts/mimir-distributed
