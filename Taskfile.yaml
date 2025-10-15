@@ -58,6 +58,10 @@ tasks:
         nodes:
           - role: control-plane
             image: kindest/node:v{{.KIND_VERSION}}
+          - role: control-plane
+            image: kindest/node:v{{.KIND_VERSION}}
+          - role: worker
+            image: kindest/node:v{{.KIND_VERSION}}
           - role: worker
             image: kindest/node:v{{.KIND_VERSION}}
           - role: worker
