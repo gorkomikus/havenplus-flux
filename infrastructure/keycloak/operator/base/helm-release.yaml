@@ -27,3 +27,21 @@ spec:
       seccompProfile:
         type: RuntimeDefault
       runAsNonRoot: true
+  # The keycloak-operator CRB has the subject's namespace hardcoded, which will cause auth errors for the operator. 
+  # Until it's fixed upstream, we're using the following postrenderer to work-around the issue.
+  # The postrenderer basically does what the official keycloak-operator docs describe when installing the operator
+  # in a different namespace than 'keycloak'. 
+  # More info: 
+  # - https://gitlab.com/kubitus-project/external-helm-charts/keycloak-operator/-/issues/4
+  # - https://www.keycloak.org/operator/installation#_installing_by_using_kubectl_without_operator_lifecycle_manager
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              version: v1
+              kind: ClusterRoleBinding
+              name: keycloak-operator-clusterrole-binding
+            patch: |
+              - op: replace
+                path: /subjects/0/namespace
+                value: keycloak-operator   
