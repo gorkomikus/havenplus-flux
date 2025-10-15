@@ -14,9 +14,9 @@ spec:
   prune: true
   wait: true
   dependsOn:
-    - name: cluster-resources
-    - name: cert-manager-controller
-    - name: kyverno-policies
+    - name: alloy
+    - name: grafana-controller
+    - name: kube-state-metrics
 
 ---
 # CONFIG

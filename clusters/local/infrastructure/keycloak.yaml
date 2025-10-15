@@ -34,7 +34,5 @@ spec:
   prune: true
   wait: true
   dependsOn:
-    - name: cluster-resources
     - name: cloudnative-pg
     - name: sealed-secrets
-    - name: kyverno-policies

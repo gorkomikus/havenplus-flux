@@ -33,7 +33,6 @@ spec:
   prune: true
   wait: true
   dependsOn:
-    - name: cluster-resources
     - name: kyverno-controller
 
 ---
@@ -44,7 +43,7 @@ metadata:
   name: kyverno-policy-reporter
   namespace: flux-system
 spec:
-  interval: 3m0s
+  interval: 15m0s
   sourceRef:
     kind: GitRepository
     name: flux-system

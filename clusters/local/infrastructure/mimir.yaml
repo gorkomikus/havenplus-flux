@@ -13,7 +13,7 @@ spec:
   prune: true
   wait: true
   dependsOn:
-    - name: cluster-resources
-    - name: minio-config
-    - name: kyverno-policies
+    - name: alloy
+    - name: grafana-controller
+    - name: kube-state-metrics
     

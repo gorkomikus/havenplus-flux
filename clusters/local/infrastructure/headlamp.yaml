@@ -13,6 +13,7 @@ spec:
   prune: true
   wait: true
   dependsOn:
-    - name: cluster-resources
-    - name: kyverno-policies
+    - name: loki
+    - name: mimir
+    - name: tempo
     
