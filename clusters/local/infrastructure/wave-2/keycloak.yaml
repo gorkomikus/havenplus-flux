@@ -1,8 +1,7 @@
-# CONTROLLER
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: tempo-controller
+  name: keycloak-operator
   namespace: flux-system
 spec:
   interval: 15m0s
@@ -10,29 +9,22 @@ spec:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/tempo/controller/overlays/local
+  path: ./infrastructure/keycloak/operator/overlays/local
   prune: true
   wait: true
-  dependsOn:
-    - name: alloy
-    - name: grafana-controller
-    - name: kube-state-metrics
 
 ---
-# CONFIG
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: tempo-config
+  name: keycloak-instances
   namespace: flux-system
 spec:
-  interval: 15m0s
+  interval: 1m0s # todo: refer to havenplus docs which describes the reason of this low interval
   sourceRef:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/tempo/config/overlays/local
+  path: ./infrastructure/keycloak/instances/overlays/local
   prune: true
-  dependsOn:
-    - name: tempo-controller
-    
+  wait: true

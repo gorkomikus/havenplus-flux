@@ -34,4 +34,5 @@ spec:
   wait: true
   dependsOn:
     - name: istio
+    - name: sealed-secrets
     

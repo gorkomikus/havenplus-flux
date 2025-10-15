@@ -53,3 +53,4 @@ spec:
   wait: true
   dependsOn:
     - name: kyverno-policies
+    - name: grafana-controller

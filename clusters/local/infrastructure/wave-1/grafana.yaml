@@ -1,8 +1,11 @@
+# We're installing Grafana in wave-1, as we need the CRDs
+# for dashboards of other components in later waves
+
 # CONTROLLER
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cert-manager-controller
+  name: grafana-controller
   namespace: flux-system
 spec:
   interval: 15m0s
@@ -10,18 +13,18 @@ spec:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/cert-manager/controller/overlays/local
+  path: ./infrastructure/grafana/controller/overlays/local
   prune: true
   wait: true
   dependsOn:
-    - name: istio
+    - name: kyverno-policies
 
 ---
 # CONFIG
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cert-manager-config
+  name: grafana-config
   namespace: flux-system
 spec:
   interval: 15m0s
@@ -29,8 +32,8 @@ spec:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/cert-manager/config/overlays/local
+  path: ./infrastructure/grafana/config/overlays/local
   prune: true
+  wait: true
   dependsOn:
-    - name: cert-manager-controller
-    
+    - name: grafana-controller

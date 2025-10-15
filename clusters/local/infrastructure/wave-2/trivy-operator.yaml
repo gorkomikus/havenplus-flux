@@ -12,5 +12,3 @@ spec:
   path: ./infrastructure/trivy-operator/overlays/local
   prune: true
   wait: true
-  dependsOn:
-    - name: keycloak

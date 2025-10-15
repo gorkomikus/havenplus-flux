@@ -1,7 +1,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: cloudnative-pg
+  name: nfs-server-provisioner
   namespace: flux-system
 spec:
   interval: 15m0s
@@ -9,9 +9,8 @@ spec:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/cloudnative-pg/overlays/local
+  path: ./infrastructure/nfs-server-provisioner/overlays/local
   prune: true
   wait: true
   dependsOn:
-    - name: istio
-    
+    - name: kyverno-policies

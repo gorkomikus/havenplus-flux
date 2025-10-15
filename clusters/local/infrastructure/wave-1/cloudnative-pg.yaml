@@ -1,7 +1,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: alloy
+  name: cloudnative-pg
   namespace: flux-system
 spec:
   interval: 15m0s
@@ -9,11 +9,9 @@ spec:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/alloy/overlays/local
+  path: ./infrastructure/cloudnative-pg/overlays/local
   prune: true
   wait: true
   dependsOn:
-    - name: falco
-    - name: trivy-operator
-    - name: velero
+    - name: kyverno-policies
     

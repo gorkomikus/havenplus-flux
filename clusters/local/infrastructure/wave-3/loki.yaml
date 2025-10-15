@@ -1,7 +1,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: kube-state-metrics
+  name: loki
   namespace: flux-system
 spec:
   interval: 15m0s
@@ -9,11 +9,7 @@ spec:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/kube-state-metrics/overlays/local
+  path: ./infrastructure/loki/overlays/local
   prune: true
   wait: true
-  dependsOn:
-    - name: falco
-    - name: trivy-operator
-    - name: velero
     

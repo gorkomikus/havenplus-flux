@@ -2,7 +2,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: grafana-controller
+  name: velero-controller
   namespace: flux-system
 spec:
   interval: 15m0s
@@ -10,19 +10,16 @@ spec:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/grafana/controller/overlays/local
+  path: ./infrastructure/velero/controller/overlays/local
   prune: true
   wait: true
-  dependsOn:
-    - name: cluster-resources
-    - name: kyverno-policies
 
 ---
 # CONFIG
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: grafana-config
+  name: velero-config
   namespace: flux-system
 spec:
   interval: 15m0s
@@ -30,10 +27,8 @@ spec:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/grafana/config/overlays/local
+  path: ./infrastructure/velero/config/overlays/local
   prune: true
-  wait: true
   dependsOn:
-    - name: falco
-    - name: trivy-operator
-    - name: velero
+    - name: velero-controller
+    

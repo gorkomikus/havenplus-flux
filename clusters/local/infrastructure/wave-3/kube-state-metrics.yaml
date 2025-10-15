@@ -1,7 +1,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: mimir
+  name: kube-state-metrics
   namespace: flux-system
 spec:
   interval: 15m0s
@@ -9,11 +9,7 @@ spec:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/mimir/overlays/local
+  path: ./infrastructure/kube-state-metrics/overlays/local
   prune: true
   wait: true
-  dependsOn:
-    - name: alloy
-    - name: grafana-controller
-    - name: kube-state-metrics
     

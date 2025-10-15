@@ -2,7 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - gotk-components.yaml
-  - sync.yaml
+  - sync-infra.yaml
+  - sync-tenants.yaml
 # Multi-Tenancy is disabled for now, as it requires a bit more work to get it functional.
 # patches:
 #   - patch: |

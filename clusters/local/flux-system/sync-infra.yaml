@@ -1,0 +1,70 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: wave-1
+  namespace: flux-system
+spec:
+  serviceAccountName: kustomize-controller
+  interval: 5m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./clusters/local/infrastructure/wave-1
+  wait: true
+  prune: true
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: wave-2
+  namespace: flux-system
+spec:
+  serviceAccountName: kustomize-controller
+  interval: 5m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./clusters/local/infrastructure/wave-2
+  wait: true
+  prune: true
+  dependsOn:
+    - name: wave-1
+
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: wave-3
+  namespace: flux-system
+spec:
+  serviceAccountName: kustomize-controller
+  interval: 5m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./clusters/local/infrastructure/wave-3
+  wait: true
+  prune: true
+  dependsOn:
+    - name: wave-2
+
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: wave-4
+  namespace: flux-system
+spec:
+  serviceAccountName: kustomize-controller
+  interval: 5m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./clusters/local/infrastructure/wave-4
+  wait: true
+  prune: true
+  dependsOn:
+    - name: wave-3

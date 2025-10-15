@@ -1,14 +1,15 @@
----
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: flux-system
+  name: alloy
   namespace: flux-system
 spec:
-  interval: 10m0s
-  path: ./clusters/local
-  prune: true
+  interval: 15m0s
   sourceRef:
     kind: GitRepository
     name: flux-system
+  serviceAccountName: kustomize-controller
+  path: ./infrastructure/alloy/overlays/local
+  prune: true
+  wait: true
     
