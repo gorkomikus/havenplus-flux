@@ -3,6 +3,12 @@ kind: Keycloak
 metadata:
   name: keycloak
 spec:
+  resources:
+    requests:
+      # set very low resource requests to fit in Kind cluster
+      # needs to be configured, otherwise the operator defaults are used which are too high for Kind
+      memory: 1Mi
+      cpu: 1m
   additionalOptions:
   - name: spi-login-protocol-openid-connect-legacy-logout-redirect-uri
     value: "true"

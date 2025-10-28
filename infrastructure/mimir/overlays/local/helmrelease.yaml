@@ -4,6 +4,14 @@ metadata:
   name: mimir
 spec:
   interval: 30m
+  install:
+    strategy: 
+      name: RetryOnFailure
+      retryInterval: 2m
+  upgrade:
+    strategy: 
+      name: RetryOnFailure
+      retryInterval: 2m
   chart:
     spec:
       chart: ./operations/helm/charts/mimir-distributed
@@ -39,6 +47,11 @@ spec:
 
     monolithic:
       replicas: 2 # we need at least two live replicas in order for Alloy to send data
+      resources:
+        # set resource requests so that mimir can run on local Kind envs
+        requests:
+          cpu: 1m
+          memory: 1Mi
       persistentVolume:
         enabled: true
         size: "3Gi"

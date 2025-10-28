@@ -3,6 +3,15 @@ kind: HelmRelease
 metadata:
   name: kube-state-metrics
 spec:
+  interval: 30m
+  install:
+    strategy: 
+      name: RetryOnFailure
+      retryInterval: 2m
+  upgrade:
+    strategy: 
+      name: RetryOnFailure
+      retryInterval: 2m
   chart:
     spec:
       chart: kube-state-metrics
@@ -10,7 +19,6 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: kube-state-metrics
-  interval: 1h
   values:
     selfMonitor:
       enabled: true

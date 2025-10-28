@@ -1,0 +1,11 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: eck-operator
+spec:
+  values:
+    resources:
+      # set resource requests so that eck-operator can run on local Kind envs
+      requests:
+        cpu: 1m
+        memory: 1Mi

@@ -4,5 +4,10 @@ metadata:
   name: keycloak-operator
 spec:
   values:
+    resources:
+      # set resource requests so that keycloak-operator can run on local Kind envs
+      requests:
+        cpu: 1m
+        memory: 1Mi
     watchNamespaces:
       - keycloak-instances

@@ -5,4 +5,5 @@ resources:
   - ../../base/generic
   - ../../base/ambient-mode
   # - ../../base/sidecar-mode
-
+patches:
+  - path: patches/helm-release-istiod.yaml

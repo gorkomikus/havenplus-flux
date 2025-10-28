@@ -7,5 +7,10 @@ spec:
     spec:
       version: "5.0.1"
   values:
+    resources:
+      # disable resource requests so that falco can run on local Kind envs
+      requests:
+        cpu: 1m
+        memory: 1Mi
     falcosidekick:
       replicaCount: 1

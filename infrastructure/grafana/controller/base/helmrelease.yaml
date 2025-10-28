@@ -4,6 +4,14 @@ metadata:
   name: grafana-operator
 spec:
   interval: 5m
+  install:
+    strategy: 
+      name: RetryOnFailure
+      retryInterval: 2m
+  upgrade:
+    strategy: 
+      name: RetryOnFailure
+      retryInterval: 2m
   chart:
     spec:
       chart: grafana-operator

@@ -7,6 +7,7 @@ vars:
   KIND_CLUSTER_NAME: '{{default "gitops-fluxcd" .KIND_CLUSTER_NAME}}'
   GITLAB_REPO_URL: '{{default "https://gitlab.com/commonground/haven/havenplus/gitops-flux.git" .GITLAB_REPO_URL}}'
   GITLAB_REPO_BRANCH: '{{default "main" .GITLAB_REPO_BRANCH}}'
+  PULL_CONTAINER_IMAGES: '{{default "true" .PULL_CONTAINER_IMAGES}}'
 
 tasks:
   default:
@@ -34,19 +35,66 @@ tasks:
         msg: |
           🚨 cloud-provider-kind is not installed! See https://github.com/kubernetes-sigs/cloud-provider-kind?tab=readme-ov-file#install for installation instructions
     cmds:
-      - echo -e "\n✅  All preconditions have been met.\n"
+      - echo -e "✅  All preconditions have been met."
     silent: true
 
   run-local:
     desc: "Run a local K8S cluster with all platform-services installed on it."
     deps: [requirements-check]
     cmds:
-      - task: create-k8s-cluster
+      - task: pull-container-images
+      - task: create-kind-cluster
+      - task: load-images-in-kind
       - task: install-fluxcd
       - task: deploy-flux-gitsource
       - task: deploy-flux-bootstrap-kustomization
+      - task: boost-reconcilitions
+      - task: watch-kustomizations
+      - task: output-success-message
 
-  create-k8s-cluster:
+  pull-container-images:
+    desc: "Pull all container images locally."
+    internal: false
+    cmds:
+      - |
+        if [ "{{.PULL_CONTAINER_IMAGES}}" != "true" ]; then 
+          echo "ℹ️  Skipping pulling of container images as per configuration."
+          exit 0
+        fi
+
+        echo "🛠️  Pulling all required container images locally - this can take a while!"
+        max_retries=3
+        retry_delay=5  # seconds
+        failed_images_file="logs/failed_image_pulls.log"
+        mkdir -p logs
+
+        # Clear the log file at the start
+        echo "The following images have been failed to pull. This might slow down and / or break the start-up of the HavenPlus stack!" > "$failed_images_file"
+
+        for image in $(cat .image-versions); do
+          retry_count=0
+          success=false
+
+          while [ $retry_count -lt $max_retries ]; do
+            if docker pull "$image"; then
+              success=true
+              break
+            else
+              retry_count=$((retry_count + 1))
+              echo "Failed to pull $image (attempt $retry_count/$max_retries). Retrying in $retry_delay seconds..."
+              sleep $retry_delay
+            fi
+          done
+
+          if ! $success; then
+            echo "Failed to pull $image after $max_retries attempts. Logging to $failed_images_file."
+            echo "$image" >> "$failed_images_file"
+          fi
+        done
+        echo "✅  All container images have been pulled locally."
+    silent: true
+
+  create-kind-cluster:
     desc: "Create and start a local Kubernetes cluster with Kind."
     internal: true
     cmds: 
@@ -58,12 +106,17 @@ tasks:
         nodes:
           - role: control-plane
             image: kindest/node:v{{.KIND_VERSION}}
-          - role: worker
-            image: kindest/node:v{{.KIND_VERSION}}
-          - role: worker
-            image: kindest/node:v{{.KIND_VERSION}}
         EOF
-      - echo -e "\n🚀 Local Kind cluster created successfully! 🚀"
+      - echo "✅  Local Kind cluster created successfully!"
+    silent: true
+
+  load-images-in-kind:
+    desc: "Create and start a local Kubernetes cluster with Kind."
+    internal: true
+    cmds:
+      - echo "🛠️  Loading container images into Kind cluster - this can take a while!"
+      - for i in `cat .image-versions`; do kind load docker-image $i --name gitops-fluxcd; done
+      - echo "✅  All container images have been loaded into the Kind cluster."
     silent: true
 
   # We are not using the 'flux bootstrap' command, as this will need a Gitlab Access Token. 
@@ -75,9 +128,9 @@ tasks:
   install-fluxcd:
     desc: "Install FluxCD on the local Kind cluster."
     cmds:
-      - echo -e "\n\n🛠️  Installing FluxCD  - this can take while!"
+      - echo "🛠️  Installing FluxCD  - this can take while!"
       - flux install
-      - echo "🚀 FluxCD installed successfully on local Kind cluster! 🚀"
+      - echo "✅  FluxCD installed successfully on local Kind cluster!"
     silent: true
 
   deploy-flux-gitsource:
@@ -87,7 +140,7 @@ tasks:
         flux create source git flux-system \
           --url={{.GITLAB_REPO_URL}} \
           --branch={{.GITLAB_REPO_BRANCH}}
-      - echo -e "\n\n🚀 Connected FluxCD to repository '{{.GITLAB_REPO_URL}}' 🚀"
+      - echo "✅  Connected FluxCD to repository '{{.GITLAB_REPO_URL}}'"
     silent: true
 
   deploy-flux-bootstrap-kustomization:
@@ -98,17 +151,53 @@ tasks:
           --source=GitRepository/flux-system \
           --path=clusters/local/flux-system \
           --prune=true
-      - echo -e "\n\n🚀 Created FluxCD bootstrap configuration 🚀"
-      - echo -e "👉 Workloads configured in the given repository will now be deployed to the local Kind cluster."
-      - echo -e "👉 Run the command 'flux get all' to verify the status."
-      - echo -e "👉 Run the command 'sudo cloud-provider-kind' to expose the Ingress (Service of type LoadBalancer)."
-      - echo -e "👉 Run the command 'kubectl get svc ingress-nginx-controller -n ingress-nginx -o jsonpath='{.status.loadBalancer.ingress[0].ip}'' to get the local IP address that cloud-provider-kind created."
-      - echo -e "👉 Edit your /etc/hosts file to map the hostname of an application in your cluster to the local IP address.\n"
+      - echo "✅  Created FluxCD bootstrap configuration!"
+      - echo "👉  HavenPlus workloads will now be deployed to the local Kind cluster."
+    silent: true
+
+  watch-kustomizations:
+    desc: "Watch all Kustomizations in the local Kind cluster."
+    set: [pipefail]
+    cmds:
+      - echo "👀  Watching Kustomizations - this can take a while!"
+      - |
+        while true; do
+          if ! flux get kustomizations 2>/dev/null | tail -n +2 | awk '$4 != "True" {exit 1}'; then
+            echo "⚠️  Please be patient, not all Kustomizations are ready: "
+            flux get kustomizations | tail -n +2 | awk '$4 != "True"'
+            sleep 5
+          else
+            break
+          fi
+        done
+      - echo "✅  All Kustomizations are ready!"
+    silent: true
+  
+  boost-reconcilitions:
+    desc: "Boost reconcilitions of all Kustomizations to speed up local deployment."
+    cmds:
+      - echo "🚀  Boosting reconcilitions of Kustomizations, please stand-by..."
+      - |
+        for kustomization in cluster-resources kyverno-controller kyverno-policies cloudnative-pg sealed-secrets ; do
+          echo "  🔄  Reconciling Kustomization: $kustomization"
+          flux reconcile kustomization $kustomization >/dev/null 2>&1
+        done
+    silent: true
+
+  output-success-message:
+    desc: "Output success message once local Kind cluster is up and running."
+    internal: true
+    cmds:
+      - echo -e "\n🚀🚀🚀 LOCAL HAVENPLUS PLATFORM IS UP AND RUNNING 🚀🚀🚀\n"
+      - echo "👉  Run the command 'flux get all' to verify the status."
+      - echo "👉  Run the command 'sudo cloud-provider-kind' to expose the Ingress (Service of type LoadBalancer)."
+      - echo "👉  Run the command 'kubectl get svc ingress-nginx-controller -n ingress-nginx -o jsonpath='{.status.loadBalancer.ingress[0].ip}'' to get the local IP address that cloud-provider-kind created."
+      - echo "👉  Edit your /etc/hosts file to map the hostname of an application in your cluster to the local IP address."
     silent: true
 
   uninstall: 
     desc: "Uninstall local set-up by deleting the Kind cluster."
     cmds:
       - kind delete cluster --name {{.KIND_CLUSTER_NAME}}
-      - echo -e "✅ Kind cluster '{{.KIND_CLUSTER_NAME}}' successfully uninstalled\n"
+      - echo "✅  Kind cluster '{{.KIND_CLUSTER_NAME}}' successfully uninstalled."
     silent: true

@@ -5,6 +5,14 @@ metadata:
 spec:
   releaseName: trivy-operator
   interval: 30m
+  install:
+    strategy: 
+      name: RetryOnFailure
+      retryInterval: 2m
+  upgrade:
+    strategy: 
+      name: RetryOnFailure
+      retryInterval: 2m
   chart:
     spec:
       chart: trivy-operator

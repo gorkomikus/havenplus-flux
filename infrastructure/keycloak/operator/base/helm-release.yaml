@@ -4,13 +4,15 @@ metadata:
   name: keycloak-operator
 spec:
   interval: 30m
-  # Retry until the watched Keycloak instances namespaces are available
+  # Retry until the Keycloak instances namespace is available
   install:
-    remediation:
-      retries: 10
+    strategy: 
+      name: RetryOnFailure
+      retryInterval: 2m
   upgrade:
-    remediation:
-      retries: 10
+    strategy: 
+      name: RetryOnFailure
+      retryInterval: 2m
   chart:
     spec:
       chart: keycloak-operator

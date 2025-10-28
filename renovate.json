@@ -8,5 +8,17 @@
     "managerFilePatterns": [
       "/\\.yaml$/"
     ]
-  }
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Updates container image versions in .image-versions file",
+      "fileMatch": ["\\.image-versions$"],
+      "matchStrings": [
+        "(?<depName>.*?):(?<currentValue>.*?)$"
+      ],
+      "datasourceTemplate": "docker",
+      "versioningTemplate": "docker"
+    }
+  ]
 }

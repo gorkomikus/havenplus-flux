@@ -4,6 +4,14 @@ metadata:
   name: ingress-nginx
 spec:
   interval: 30m
+  install:
+    strategy: 
+      name: RetryOnFailure
+      retryInterval: 2m
+  upgrade:
+    strategy: 
+      name: RetryOnFailure
+      retryInterval: 2m
   chart:
     spec:
       chart: ingress-nginx
