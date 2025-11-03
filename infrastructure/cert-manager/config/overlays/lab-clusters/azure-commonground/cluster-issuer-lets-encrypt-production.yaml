@@ -1,0 +1,22 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-production
+spec:
+  acme:
+    email: "haven@vng.nl"
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-production-private-key
+    solvers:
+      - dns01:
+          azureDNS:
+            hostedZoneName: "havenplus-azure.haven.vng.cloud"
+            resourceGroupName: "rg-havenplus"
+            subscriptionID: "f83aeed4-d795-4061-8c72-194c372b586e"
+            environment: AzurePublicCloud
+            managedIdentity:
+              clientID: "b8237d25-c990-4901-9854-c1f178d45221"
+        selector:
+          dnsZones:
+            - "havenplus-azure.haven.vng.cloud"

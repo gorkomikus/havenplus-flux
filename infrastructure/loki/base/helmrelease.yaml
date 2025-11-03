@@ -41,9 +41,9 @@ spec:
         retention_period: 31d
       storage:
         bucketNames:
-          chunks: loki
-          ruler: loki
-          admin: loki
+          chunks: havenplus-loki-chunks
+          ruler: havenplus-loki-ruler
+          admin: havenplus-loki-admin
       storage_config: {} # set_in_overlay
       schemaConfig: {} # set_in_overlay
       podSecurityContext:

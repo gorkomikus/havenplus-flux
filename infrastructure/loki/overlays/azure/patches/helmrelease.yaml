@@ -3,15 +3,12 @@ kind: HelmRelease
 metadata:
   name: loki
 spec:
-  chart:
-    spec:
-      version: "6.28.0"
   values:
     serviceAccount:
       labels:
         azure.workload.identity/use: "true"
       annotations:
-        "azure.workload.identity/client-id": "6ebdf2c1-0916-4a10-959f-013b477f8c20"
+        "azure.workload.identity/client-id": "to-be-set"
     write:
       replicas: 2
     read:
@@ -23,11 +20,11 @@ spec:
         azure.workload.identity/use: "true"
       storage:
         type: azure
-        azure: 
-          accountName: lgtmfield
+        azure:
+          accountName: "to-be-set"
           useFederatedToken: true
       schemaConfig:
-        configs: 
+        configs:
           - from: "2024-06-01"
             object_store: azure
             store: tsdb

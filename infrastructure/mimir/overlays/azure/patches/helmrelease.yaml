@@ -3,9 +3,6 @@ kind: HelmRelease
 metadata:
   name: mimir
 spec:
-  chart:
-    spec:
-      version: "5.5.1"
   values:
     global:
       podLabels:
@@ -14,7 +11,7 @@ spec:
       create: true
       name: mimir-storage
       annotations:
-        azure.workload.identity/client-id: "fbd3408e-7b69-4dab-b0e4-a3168762337d"
+        azure.workload.identity/client-id: "to-be-set"
       labels:
         "azure.workload.identity/use": "true"
     mimir:
@@ -28,17 +25,23 @@ spec:
         common:
           storage:
             azure:
-              account_name: lgtmfield
+              account_name: to-be-set
               endpoint_suffix: "blob.core.windows.net"
         blocks_storage:
           backend: azure
           azure:
-            container_name: mimir-blocks
+            container_name: to-be-set
         alertmanager_storage:
           backend: azure
           azure:
-            container_name: mimir-alertmanager
+            container_name: to-be-set
         ruler_storage:
           backend: azure
           azure:
-            container_name: mimir-ruler
+            container_name: to-be-set
+    compactor:
+      persistentVolume:
+        size: 50Gi
+    store_gateway:
+      persistentVolume:
+        size: 20Gi

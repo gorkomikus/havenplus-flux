@@ -1,0 +1,27 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mimir
+spec:
+  values:
+    global:
+      podLabels:
+        "azure.workload.identity/use": "true"
+    serviceAccount:
+      annotations:
+        azure.workload.identity/client-id: "ed7d8ab8-de2d-43ab-93c5-e375e76c9be8"
+    mimir:
+      structuredConfig:
+        common:
+          storage:
+            azure:
+              account_name: akshavenplus
+        blocks_storage:
+          azure:
+            container_name: havenplus-mimir-blocks
+        alertmanager_storage:
+          azure:
+            container_name: havenplus-mimir-alertmanager
+        ruler_storage:
+          azure:
+            container_name: havenplus-mimir-ruler

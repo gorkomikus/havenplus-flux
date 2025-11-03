@@ -6,7 +6,7 @@ kustomize:
     name: bitnamilegacy/kubectl:1.33.4
     entrypoint: [ "" ]
   script:
-    - find ./infrastructure/*/overlays -name "kustomization.yaml" | while read -r kustomization; do
+    - find ./infrastructure/**/overlays -name "kustomization.yaml" | while read -r kustomization; do
       overlay_dir=$(dirname "$kustomization");
       echo "Validating $overlay_dir";
       kubectl kustomize "$overlay_dir" > /dev/null;

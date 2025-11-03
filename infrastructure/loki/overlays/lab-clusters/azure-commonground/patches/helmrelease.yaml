@@ -1,0 +1,15 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: loki
+spec:
+  values:
+    serviceAccount:
+      annotations:
+        "azure.workload.identity/client-id": "c986b74f-136b-4736-973e-d2fedc307fd9"
+    loki:
+      podLabels:
+        azure.workload.identity/use: "true"
+      storage:
+        azure:
+          accountName: "akshavenplus"

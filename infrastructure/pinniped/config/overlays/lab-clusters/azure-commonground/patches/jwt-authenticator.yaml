@@ -1,0 +1,7 @@
+apiVersion: authentication.concierge.pinniped.dev/v1alpha1
+kind: JWTAuthenticator
+metadata:
+  name: jwt-authenticator
+spec:
+  issuer: "https://pinniped-supervisor.havenplus-azure.haven.vng.cloud"
+  audience: "havenplus-azure.haven.vng.cloud"

@@ -3,5 +3,6 @@ kind: Kustomization
 namespace: loki
 resources:
   - ../../base
+  # - sealed.yaml
 patches:
   - path: patches/helmrelease.yaml

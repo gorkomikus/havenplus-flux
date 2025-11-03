@@ -3,18 +3,22 @@ kind: Grafana
 metadata:
   name: grafana
 spec:
+  # Set-up simplest form of Grafana on local
   config:
-    server:
-      root_url: "https://grafana.<domain>"
-    auth.generic_oauth:
-      api_url: "https://authn.<domain>/realms/platform/protocol/openid-connect/userinfo"
-      token_url: "https://authn.<domain>/realms/platform/protocol/openid-connect/token"
-      auth_url: "https://authn.<domain>/realms/platform/protocol/openid-connect/auth"
-      client_id: "grafana"
     database:
       type: postgres
       name: grafana
       user: grafana
+    server:
+      root_url: "http://grafana.havenplus.local"
+    analytics:
+      reporting_enabled: "false"
+    security:
+      admin_user: admin
+      admin_password: admin
+    auth: ~
+    users: ~
+    auth.generic_oauth: ~
   deployment:
     spec:
       template:
@@ -22,11 +26,6 @@ spec:
           containers:
             - name: grafana
               env:
-                - name: GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET
-                  valueFrom:
-                    secretKeyRef:
-                      name: grafana
-                      key: grafana_oidc_client_secret
                 - name: GF_DATABASE_HOST
                   valueFrom:
                     secretKeyRef:

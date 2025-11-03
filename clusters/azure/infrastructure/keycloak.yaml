@@ -25,7 +25,7 @@ metadata:
   name: keycloak-instances
   namespace: flux-system
 spec:
-  interval: 15m0s
+  interval: 1m0s # todo: refer to havenplus docs which describes the reason of this low interval
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -34,4 +34,7 @@ spec:
   prune: true
   wait: true
   dependsOn:
-    - name: keycloak-operator
+    - name: cluster-resources
+    - name: cloudnative-pg
+    - name: sealed-secrets
+    - name: kyverno-policies

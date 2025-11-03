@@ -10,4 +10,4 @@ spec:
       stabilityLevel: experimental
       configMap:
         name: alloy
-        key: config.alloy
+        key: .

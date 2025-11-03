@@ -3,7 +3,6 @@ kind: Kustomization
 namespace: grafana
 resources:
   - ../../base
-  - sealed.yaml
-  - routes.yaml
 patches:
   - path: patches/grafana.yaml
+  - path: patches/cnpg.yaml

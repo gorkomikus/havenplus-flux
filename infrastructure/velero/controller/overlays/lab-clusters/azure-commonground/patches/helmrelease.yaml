@@ -1,0 +1,21 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: velero
+spec:
+  values:
+    serviceAccount:
+      server:
+        annotations:
+          azure.workload.identity/client-id: "65ef08f4-272d-4778-84b6-e3ec0ef531c1"
+    configuration:
+      backupStorageLocation:
+      - name: "azure"
+        default: true
+        provider: "azure"
+        bucket: "havenplus-velero"
+        config:
+          resourceGroup: "rg-havenplus"
+          storageAccount: "akshavenplus"
+          subscriptionId: "f83aeed4-d795-4061-8c72-194c372b586e"
+          useAAD: "true"
