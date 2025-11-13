@@ -3,6 +3,7 @@ kind: Kustomization
 namespace: pinniped
 resources:
   - ../../../base
+  - clusterrolebinding.yaml
   - federation-domain.yaml
   - oidc-identity-provider.yaml
   - sealed-gitlab-client-credentials.yaml
