@@ -6,7 +6,7 @@ spec:
   interval: 5m0s
   url: https://github.com/NGDATA/mimir
   ref:
-    branch: main
+    tag: mimir-distributed-5.8.0-lily
   ignore: |
     # exclude all
     /*

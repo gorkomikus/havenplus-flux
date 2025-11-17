@@ -10,7 +10,7 @@ docker.io/grafana/alloy:v1.11.2
 docker.io/grafana/grafana:12.1.0
 docker.io/grafana/loki-canary:3.5.5
 docker.io/grafana/loki:3.5.5
-docker.io/grafana/mimir:r328-4ad7c7d
+docker.io/grafana/mimir:r365-7df8ab14
 docker.io/grafana/rollout-operator:v0.23.0
 docker.io/grafana/tempo:2.8.1
 docker.io/istio/install-cni:1.27.3-distroless
