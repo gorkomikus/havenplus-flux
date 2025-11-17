@@ -1,0 +1,65 @@
+---
+apiVersion: k8s.keycloak.org/v2alpha1
+kind: KeycloakRealmImport
+metadata:
+  name: pinniped-realm-config
+spec:
+  keycloakCRName: keycloak
+  realm:
+    realm: master
+    enabled: true
+    # Groups for RBAC
+    groups:
+      - name: k8s-admins
+        path: /k8s-admins
+      - name: k8s-developers
+        path: /k8s-developers
+    # OIDC Client for Pinniped CLI
+    clients:
+      - clientId: pinniped-cli
+        name: Pinniped CLI
+        description: OIDC client for Pinniped CLI authentication
+        enabled: true
+        publicClient: true
+        directAccessGrantsEnabled: true
+        standardFlowEnabled: true
+        implicitFlowEnabled: false
+        serviceAccountsEnabled: false
+        # Redirect URIs for CLI login flow
+        redirectUris:
+          - "http://127.0.0.1:*"
+          - "http://localhost:*"
+          - "http://127.0.0.1:*/callback"
+          - "http://localhost:*/callback"
+        webOrigins:
+          - "*"
+        protocol: openid-connect
+        # Default client scopes
+        defaultClientScopes:
+          - profile
+          - email
+          - roles
+        optionalClientScopes:
+          - address
+          - phone
+          - offline_access
+        # Protocol mappers for groups
+        protocolMappers:
+          - name: groups
+            protocol: openid-connect
+            protocolMapper: oidc-group-membership-mapper
+            consentRequired: false
+            config:
+              full.path: "false"
+              id.token.claim: "true"
+              access.token.claim: "true"
+              claim.name: groups
+              userinfo.token.claim: "true"
+          - name: audience-account
+            protocol: openid-connect
+            protocolMapper: oidc-audience-mapper
+            consentRequired: false
+            config:
+              included.client.audience: account
+              id.token.claim: "false"
+              access.token.claim: "true"

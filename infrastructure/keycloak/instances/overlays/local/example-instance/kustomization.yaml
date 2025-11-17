@@ -6,3 +6,4 @@ resources:
   - routes.yaml
   - sealed.yaml
   - namespace.yaml
+  - pinniped-client.yaml

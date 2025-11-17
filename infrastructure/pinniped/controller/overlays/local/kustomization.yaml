@@ -3,6 +3,6 @@ kind: Kustomization
 namespace: pinniped
 resources:
   - ../../base
-  - tlsroute.yaml
+  - tlsroute-concierge.yaml
 patches:
   - path: patches/helm-release.yaml
