@@ -4,4 +4,4 @@ resources:
 - git-repository.yaml
 - rbac.yaml
 - sync.yaml
-namespace: tenant-demo
+namespace: tenant-fieldlab-nov2025
