@@ -12,6 +12,7 @@ spec:
         any:
         - resources:
             namespaces: 
+            - istio-system
             - tenant-fieldlab-nov2025
       disallow-host-namespaces:
         any:
@@ -58,6 +59,7 @@ spec:
         any:
         - resources:
             namespaces: 
+            - istio-system
             - tenant-fieldlab-nov2025
       restrict-seccomp:
         any:
