@@ -9,7 +9,7 @@ resources:
   - external-secrets.yaml
   # - falco.yaml
   - grafana.yaml
-  # - headlamp.yaml
+  - headlamp.yaml
   - ingress-nginx.yaml
   - istio.yaml
   - keycloak.yaml
