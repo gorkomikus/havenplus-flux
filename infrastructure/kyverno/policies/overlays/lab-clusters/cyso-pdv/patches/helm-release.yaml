@@ -114,7 +114,7 @@ spec:
         - resources:
             namespaces:
             - tenant-fieldlab-nov2025
-            - istio-ingress
+            - istio-gateway
             - local-path-storage
             - falco
         - resources:
