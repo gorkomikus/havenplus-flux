@@ -5,13 +5,13 @@ resources:
   - cert-manager.yaml
   - cloudnative-pg.yaml
   - cluster-resources.yaml
-  - eck-operator.yaml
+  # - eck-operator.yaml
   - external-secrets.yaml
-  - falco.yaml
+  # - falco.yaml
   - grafana.yaml
-  - headlamp.yaml
+  # - headlamp.yaml
   - ingress-nginx.yaml
-  - istio.yaml
+  # - istio.yaml
   - keycloak.yaml
   - kube-state-metrics.yaml
   - kyverno.yaml
@@ -21,5 +21,5 @@ resources:
   # - pinniped.yaml
   - sealed-secrets.yaml
   - tempo.yaml
-  - trivy-operator.yaml
+  # - trivy-operator.yaml
   - velero.yaml
