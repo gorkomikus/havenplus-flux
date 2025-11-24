@@ -23,6 +23,7 @@ spec:
         - resources:
             namespaces:
             - tenant-fieldlab-nov2025
+            - istio-system
             - falco
             - local-path-storage
             - trivy-system
@@ -73,6 +74,7 @@ spec:
         - resources:
             namespaces: 
             - tenant-fieldlab-nov2025
+            - istio-system
             - local-path-storage
             - nfs-server-provisioner # needs additional capabilities to function properly
             - falco
@@ -81,6 +83,7 @@ spec:
         - resources:
             namespaces:
             - tenant-fieldlab-nov2025
+            - istio-system
             - local-path-storage
             - falco
       require-run-as-non-root-user:
@@ -88,6 +91,7 @@ spec:
         - resources:
             namespaces:
             - tenant-fieldlab-nov2025
+            - istio-system
             - trivy-system
             - nfs-server-provisioner
             - falco
@@ -97,6 +101,7 @@ spec:
         - resources:
             namespaces:
             - tenant-fieldlab-nov2025
+            - istio-system
             - local-path-storage
             - trivy-system # trivy needs to be root in order to be able to scan filesystems
             - nfs-server-provisioner
@@ -109,9 +114,14 @@ spec:
             - tenant-fieldlab-nov2025
             - local-path-storage
             - falco
+        - resources:
+            selector:
+              matchLabels:
+                app.kubernetes.io/name: ztunnel
       restrict-volume-types:
         any:
         - resources:
             namespaces:
+            - istio-system
             - tenant-fieldlab-nov2025
             - falco

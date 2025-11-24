@@ -98,6 +98,10 @@ spec:
             namespaces:
             - local-path-storage
             - falco
+        - resources:
+            selector:
+              matchLabels:
+                app.kubernetes.io/name: ztunnel
       restrict-volume-types:
         any:
         - resources:
