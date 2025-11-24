@@ -11,6 +11,7 @@ resources:
   - grafana.yaml
   - headlamp.yaml
   - ingress-nginx.yaml
+  - istio.yaml
   - keycloak.yaml
   - kube-state-metrics.yaml
   - kyverno.yaml
