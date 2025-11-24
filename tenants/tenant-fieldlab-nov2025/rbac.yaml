@@ -4,7 +4,7 @@ kind: Namespace
 metadata:
   labels:
     toolkit.fluxcd.io/tenant: tenant-fieldlab-nov2025
-    istio.io/dataplane-mode: ambient
+    istio-injection: enabled
   name: tenant-fieldlab-nov2025
 ---
 apiVersion: v1
