@@ -50,7 +50,7 @@ reg.kyverno.io/kyverno/cleanup-controller:v1.16.0
 reg.kyverno.io/kyverno/kyverno:v1.16.0
 reg.kyverno.io/kyverno/kyvernopre:v1.16.0
 reg.kyverno.io/kyverno/reports-controller:v1.16.0
-registry.gitlab.com/commonground/haven/havenplus/example-apps/otel-demo-golang:v1.0.0
+registry.gitlab.com/commonground/haven/havenplus/example-apps/otel-demo-golang:1.1.0
 registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.17.0
 registry.k8s.io/pause:3.10
 registry.k8s.io/sig-storage/nfs-provisioner:v4.0.8
