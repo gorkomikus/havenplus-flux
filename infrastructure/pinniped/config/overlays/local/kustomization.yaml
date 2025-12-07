@@ -4,5 +4,8 @@ namespace: pinniped
 resources:
   - ../../base
   - clusterrolebinding.yaml
+  - federation-domain.yaml
+  - keycloak-client-secret.yaml
+  - oidc-identity-provider.yaml
 patches:
   - path: patches/jwt-authenticator.yaml

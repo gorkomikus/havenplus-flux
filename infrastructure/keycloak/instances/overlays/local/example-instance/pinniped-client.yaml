@@ -14,8 +14,9 @@ spec:
         path: /k8s-admins
       - name: k8s-developers
         path: /k8s-developers
-    # OIDC Client for Pinniped CLI
+    # OIDC Clients
     clients:
+      # Public client for Pinniped CLI direct authentication
       - clientId: pinniped-cli
         name: Pinniped CLI
         description: OIDC client for Pinniped CLI authentication
@@ -63,3 +64,42 @@ spec:
               included.client.audience: account
               id.token.claim: "false"
               access.token.claim: "true"
+      # Confidential client for Pinniped Supervisor
+      - clientId: pinniped-supervisor
+        name: Pinniped Supervisor
+        description: OIDC confidential client for Pinniped Supervisor
+        enabled: true
+        publicClient: false
+        # Remove this line and let Keycloak auto-generate in production
+        secret: "dev-secret"
+        directAccessGrantsEnabled: false
+        standardFlowEnabled: true
+        implicitFlowEnabled: false
+        serviceAccountsEnabled: false
+        # Redirect URIs for Supervisor callback
+        redirectUris:
+          - "https://pinniped-supervisor.local/callback"
+        webOrigins:
+          - "https://pinniped-supervisor.local"
+        protocol: openid-connect
+        # Default client scopes
+        defaultClientScopes:
+          - profile
+          - email
+          - roles
+        optionalClientScopes:
+          - address
+          - phone
+          - offline_access
+        # Protocol mappers for groups
+        protocolMappers:
+          - name: groups
+            protocol: openid-connect
+            protocolMapper: oidc-group-membership-mapper
+            consentRequired: false
+            config:
+              full.path: "false"
+              id.token.claim: "true"
+              access.token.claim: "true"
+              claim.name: groups
+              userinfo.token.claim: "true"
