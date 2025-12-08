@@ -7,5 +7,5 @@ metadata:
 spec:
   interval: 1m0s
   ref:
-    branch: demo
+    branch: main
   url: https://gitlab.com/commonground/haven/havenplus/tenant-demo.git
