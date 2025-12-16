@@ -12,4 +12,3 @@ spec:
   path: ./infrastructure/cluster-resources/overlays/odc-noord
   prune: true
   wait: true
-  serverSideApply: true
