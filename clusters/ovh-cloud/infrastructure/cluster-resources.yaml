@@ -12,3 +12,4 @@ spec:
   path: ./infrastructure/cluster-resources/overlays/ovh-cloud
   prune: true
   wait: true
+  serverSideApply: true

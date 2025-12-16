@@ -12,3 +12,4 @@ spec:
   path: ./infrastructure/cluster-resources/overlays/local
   prune: true
   wait: true
+  serverSideApply: true

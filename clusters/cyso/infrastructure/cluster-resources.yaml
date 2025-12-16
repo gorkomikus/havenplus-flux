@@ -12,3 +12,4 @@ spec:
   path: ./infrastructure/cluster-resources/overlays/cyso
   prune: true
   wait: true
+  serverSideApply: true

@@ -12,3 +12,4 @@ spec:
   path: ./infrastructure/cluster-resources/overlays/azure
   prune: true
   wait: true
+  serverSideApply: true
