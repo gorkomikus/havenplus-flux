@@ -8,6 +8,7 @@ resources:
   - eck-operator.yaml
   - external-secrets.yaml
   - falco.yaml
+  - garage.yaml
   - grafana.yaml
   - headlamp.yaml
   - istio.yaml
@@ -16,7 +17,6 @@ resources:
   - kyverno.yaml
   - loki.yaml
   - mimir.yaml
-  - minio.yaml
   - nfs-server-provisioner.yaml
   - sealed-secrets.yaml
   - tempo.yaml

@@ -1,6 +1,7 @@
 docker.elastic.co/eck/eck-operator:3.2.0
 docker.io/bitnami/sealed-secrets-controller:0.33.1
 docker.io/bitnamilegacy/kubectl:1.33
+docker.io/dxflrs/amd64_garage:v1.2.0
 docker.io/falcosecurity/falco-driver-loader:0.41.0
 docker.io/falcosecurity/falco:0.41.0
 docker.io/falcosecurity/falcoctl:0.11.2
@@ -42,9 +43,6 @@ quay.io/jetstack/cert-manager-startupapicheck:v1.19.2
 quay.io/jetstack/cert-manager-webhook:v1.19.2
 quay.io/keycloak/keycloak-operator:26.4.7
 quay.io/keycloak/keycloak:26.4.7
-quay.io/minio/minio:RELEASE.2025-04-08T15-41-24Z
-quay.io/minio/operator-sidecar:v7.0.1
-quay.io/minio/operator:v7.1.1
 quay.io/prometheus-operator/prometheus-config-reloader:v0.81.0
 reg.kyverno.io/kyverno/background-controller:v1.16.1
 reg.kyverno.io/kyverno/cleanup-controller:v1.16.1

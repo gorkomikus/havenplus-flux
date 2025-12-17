@@ -1,0 +1,10 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: garage
+spec:
+  values:
+    garage:
+      replicationFactor: 1
+    deployment:
+      replicaCount: 1

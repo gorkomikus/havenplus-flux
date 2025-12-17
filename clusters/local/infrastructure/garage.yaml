@@ -2,7 +2,7 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: minio-controller
+  name: garage-controller
   namespace: flux-system
 spec:
   interval: 15m0s
@@ -10,20 +10,19 @@ spec:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/minio/controller/overlays/local
+  path: ./infrastructure/garage/controller/overlays/local
   prune: true
   wait: true
   dependsOn:
     - name: cluster-resources
     - name: kyverno-policies
-    
----
 
+---
 # CONFIG
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: minio-config
+  name: garage-config
   namespace: flux-system
 spec:
   interval: 15m0s
@@ -31,7 +30,8 @@ spec:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/minio/config/overlays/local
+  path: ./infrastructure/garage/config/local
   prune: true
+  wait: true
   dependsOn:
-    - name: minio-controller
+    - name: garage-controller

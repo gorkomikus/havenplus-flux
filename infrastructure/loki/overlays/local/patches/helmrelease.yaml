@@ -17,10 +17,10 @@ spec:
           ruler: loki-ruler
           admin: loki-admin
         s3:
-          endpoint: http://minio.minio-generic-tenant.svc:80
-          region: not-applicable
-          accessKeyId: minio
-          secretAccessKey: minio123
+          endpoint: http://garage.garage.svc:3900
+          region: garage
+          accessKeyId: GK189d726f849af84af01bdfeb # static Garage key for local env ONLY!
+          secretAccessKey: f44a7eb0d58c8dd785c5494506445abe93cd75afab48fa0dd2db35bdd78a01f0 # static Garage secret for local env ONLY!
           s3ForcePathStyle: true
           insecure: true
       schemaConfig:

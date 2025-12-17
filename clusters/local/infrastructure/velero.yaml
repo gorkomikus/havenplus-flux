@@ -15,7 +15,7 @@ spec:
   wait: true
   dependsOn:
     - name: cluster-resources
-    - name: minio-config
+    - name: garage-config
     - name: kyverno-policies
 
 ---
