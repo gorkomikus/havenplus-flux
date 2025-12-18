@@ -201,3 +201,22 @@ tasks:
       - kind delete cluster --name {{.KIND_CLUSTER_NAME}}
       - echo "✅  Kind cluster '{{.KIND_CLUSTER_NAME}}' successfully uninstalled."
     silent: true
+
+  # HELPERS
+  # These should work on all providers
+  port-forward-headlamp:
+    desc: "Start port-forwarding to access Headlamp UI locally."
+    cmds:
+      - |
+        echo "⏩  Port-forwarding Headlamp UI to http://localhost:4466/"
+        echo "👉  Press Ctrl+C to stop port-forwarding."
+        kubectl port-forward --namespace headlamp svc/headlamp 4466:80
+    silent: true
+
+  get-headlamp-token:
+    desc: "Get an admin token to log in to Headlamp UI."
+    cmds:
+      - |
+        echo "🔐  Use the token below to login to headlamp:"
+        kubectl create token headlamp --namespace headlamp
+    silent: true
