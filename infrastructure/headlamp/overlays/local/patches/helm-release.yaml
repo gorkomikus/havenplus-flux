@@ -1,0 +1,13 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: headlamp
+spec:
+  values:
+    config:
+      pluginsDir: /build/plugins
+      oidc:
+        clientID: "headlamp"
+        clientSecret: "hWe1sAeejYZVoKjWhUhlJLNC9foKav92"
+        issuerURL: "http://keycloak-service.keycloak-instances:8080/realms/havenplus"
+        scopes: "email,profile"

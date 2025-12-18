@@ -24,7 +24,7 @@ spec:
       key: username
     vendor: postgres
   hostname:
-    hostname: keycloak.local
+    hostname: keycloak-service.keycloak-instances
     strict: false
   http:
     httpEnabled: true
