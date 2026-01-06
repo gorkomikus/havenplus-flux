@@ -4,6 +4,8 @@ metadata:
   name: keycloak-operator
 spec:
   interval: 30m
+  driftDetection:
+    mode: enabled
   # Retry until the Keycloak instances namespace is available
   install:
     strategy: 

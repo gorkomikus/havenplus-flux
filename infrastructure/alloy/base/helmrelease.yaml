@@ -4,6 +4,8 @@ metadata:
   name: alloy
 spec:
   interval: 5m
+  driftDetection:
+    mode: enabled
   install:
     strategy: 
       name: RetryOnFailure

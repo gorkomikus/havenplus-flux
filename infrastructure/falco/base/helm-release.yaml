@@ -5,6 +5,8 @@ metadata:
 spec:
   releaseName: falco
   interval: 30m
+  driftDetection:
+    mode: enabled
   install:
     strategy: 
       name: RetryOnFailure

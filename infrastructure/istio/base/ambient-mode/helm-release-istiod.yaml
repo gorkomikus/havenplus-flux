@@ -4,6 +4,10 @@ metadata:
   name: istiod
 spec:
   interval: 30m
+  driftDetection:
+    # set to warn as we've got some Istio automated post-deployment 
+    # patching happening which causes drift correction loops
+    mode: warn
   install:
     strategy: 
       name: RetryOnFailure

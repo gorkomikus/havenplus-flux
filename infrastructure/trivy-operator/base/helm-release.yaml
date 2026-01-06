@@ -5,6 +5,8 @@ metadata:
 spec:
   releaseName: trivy-operator
   interval: 30m
+  driftDetection:
+    mode: enabled
   install:
     strategy: 
       name: RetryOnFailure
