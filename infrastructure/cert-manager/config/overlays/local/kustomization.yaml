@@ -3,4 +3,3 @@ kind: Kustomization
 namespace: cert-manager
 resources:
   - ../../base
-  - cluster-issuer-selfsigned.yaml
