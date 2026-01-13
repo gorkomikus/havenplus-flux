@@ -1,5 +1,7 @@
 # Azure
 
+## Installation
+
 ```
 flux install
 
@@ -12,3 +14,7 @@ flux create kustomization flux-system \
 --path=clusters/lab-clusters/azure-commonground/flux-system \
 --prune=true
 ```
+
+## URLs
+
+* SealedSecrets: https://public-key.havenplus-azure.haven.vng.cloud/v1/cert.pem
