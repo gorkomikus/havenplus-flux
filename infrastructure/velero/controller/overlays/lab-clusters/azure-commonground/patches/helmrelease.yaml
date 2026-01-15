@@ -7,7 +7,7 @@ spec:
     serviceAccount:
       server:
         annotations:
-          azure.workload.identity/client-id: "65ef08f4-272d-4778-84b6-e3ec0ef531c1"
+          azure.workload.identity/client-id: "4251dd95-c170-4d40-a5c0-861f3e1b2915"
     configuration:
       backupStorageLocation:
       - name: "azure"

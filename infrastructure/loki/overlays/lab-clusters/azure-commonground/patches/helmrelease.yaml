@@ -6,7 +6,7 @@ spec:
   values:
     serviceAccount:
       annotations:
-        "azure.workload.identity/client-id": "c986b74f-136b-4736-973e-d2fedc307fd9"
+        "azure.workload.identity/client-id": "a1cd866b-4171-4b28-a91c-ece79747137e"
     loki:
       podLabels:
         azure.workload.identity/use: "true"

@@ -9,7 +9,7 @@ spec:
         "azure.workload.identity/use": "true"
     serviceAccount:
       annotations:
-        azure.workload.identity/client-id: "ed7d8ab8-de2d-43ab-93c5-e375e76c9be8"
+        azure.workload.identity/client-id: "3fe775ff-8bc2-4da8-bbf5-60c45853a3e4"
     mimir:
       structuredConfig:
         common:

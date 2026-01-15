@@ -16,7 +16,7 @@ spec:
             subscriptionID: "f83aeed4-d795-4061-8c72-194c372b586e"
             environment: AzurePublicCloud
             managedIdentity:
-              clientID: "b8237d25-c990-4901-9854-c1f178d45221"
+              clientID: "dbe86f30-7011-425f-bb61-3fbca88a714f"
         selector:
           dnsZones:
             - "havenplus-azure.haven.vng.cloud"
