@@ -5,7 +5,7 @@ metadata:
 spec:
   interval: 30m
   driftDetection:
-    mode: enabled
+    mode: disabled
   install:
     strategy: 
       name: RetryOnFailure
