@@ -28,6 +28,9 @@ spec:
     strict: false
   http:
     httpEnabled: true
+    httpPort: 8080
+    # Empty tlsSecret to explicitly disable HTTPSgs
+    tlsSecret: ""
   proxy:
     headers: xforwarded
   unsupported:
