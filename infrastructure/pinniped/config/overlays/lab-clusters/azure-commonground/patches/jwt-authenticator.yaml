@@ -3,5 +3,8 @@ kind: JWTAuthenticator
 metadata:
   name: jwt-authenticator
 spec:
-  issuer: "https://pinniped-supervisor.havenplus-azure.haven.vng.cloud"
-  audience: "havenplus-azure.haven.vng.cloud"
+  issuer: "https://keycloak.havenplus-azure.haven.vng.cloud/realms/havenplus"
+  audience: "pinniped-cli"
+  claims:
+    username: email
+    groups: groups

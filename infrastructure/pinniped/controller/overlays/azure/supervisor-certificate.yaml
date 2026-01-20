@@ -6,3 +6,7 @@ spec:
   commonName: "pinniped-supervisor.<domain>"
   dnsNames:
     - "pinniped-supervisor.<domain>"
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-production
+  secretName: pinniped-supervisor-tls

@@ -4,6 +4,6 @@ namespace: pinniped
 resources:
   - ../../base
   - ingress-concierge.yaml
+  - supervisor-certificate.yaml
 patches:
   - path: patches/helm-release.yaml
-  - path: patches/supervisor-certificate.yaml

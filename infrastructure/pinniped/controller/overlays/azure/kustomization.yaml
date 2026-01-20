@@ -5,6 +5,6 @@ resources:
   - ../../base
   - tlsroute-concierge.yaml
   - tlsroute-supervisor.yaml
+  - supervisor-certificate.yaml
 patches:
   - path: patches/helm-release.yaml
-  - path: patches/supervisor-certificate.yaml
