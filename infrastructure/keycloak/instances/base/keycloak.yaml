@@ -24,7 +24,7 @@ spec:
       key: username
     vendor: postgres
   hostname:
-    hostname: keycloak.havenplus-azure.haven.vng.cloud
+    hostname: set-in-overlay
     strict: false
   http:
     httpEnabled: true

@@ -3,3 +3,4 @@ kind: Kustomization
 namespace: keycloak-instances
 resources:
   - ../../cyso
+#  - sealed.yaml

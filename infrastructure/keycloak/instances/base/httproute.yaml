@@ -7,4 +7,8 @@ spec:
   - name: public-gateway
     namespace: istio-gateway
   hostnames:
-  - "keycloak.local"
+  - set-in-overlay
+  rules:
+  - backendRefs:
+    - name: keycloak-service
+      port: 8080

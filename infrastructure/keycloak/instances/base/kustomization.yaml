@@ -4,5 +4,5 @@ resources:
   - cnpg.yaml
   - httproute.yaml
   - keycloak.yaml
-  - sealed.yaml
   - namespace.yaml
+  - pinniped-client.yaml
