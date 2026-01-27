@@ -1,0 +1,37 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: keycloak-operator
+  namespace: flux-system
+spec:
+  interval: 15m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  serviceAccountName: kustomize-controller
+  path: ./infrastructure/keycloak/operator/overlays/lab-clusters/cyso-pdv
+  prune: true
+  wait: true
+  dependsOn:
+    - name: cluster-resources
+    - name: cloudnative-pg
+    - name: sealed-secrets
+    - name: kyverno-policies
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: keycloak-instances
+  namespace: flux-system
+spec:
+  interval: 15m0s
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  serviceAccountName: kustomize-controller
+  path: ./infrastructure/keycloak/instances/overlays/lab-clusters/cyso-pdv
+  prune: true
+  wait: true
+  dependsOn:
+    - name: keycloak-operator
