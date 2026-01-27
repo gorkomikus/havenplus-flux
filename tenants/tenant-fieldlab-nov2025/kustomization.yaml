@@ -3,5 +3,5 @@ kind: Kustomization
 resources:
 - git-repository.yaml
 - rbac.yaml
-- sync.yaml
+# - sync.yaml
 namespace: tenant-fieldlab-nov2025
