@@ -11,7 +11,8 @@ spec:
       disallow-capabilities:
         any:
         - resources:
-            namespaces: []
+            namespaces: 
+            - nfs-server-provisioner
       disallow-host-namespaces:
         any:
         - resources:
