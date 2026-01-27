@@ -10,7 +10,7 @@ spec:
     kind: GitRepository
     name: flux-system
   serviceAccountName: kustomize-controller
-  path: ./infrastructure/istio/overlays/lab-clusters/cyso-pdv
+  path: ./infrastructure/istio/overlays/lab-clusters/avisi-ame-poc
   prune: true
   wait: true
   dependsOn:
