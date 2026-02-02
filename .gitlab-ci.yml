@@ -3,7 +3,7 @@ variables:
 
 kustomize:
   image:
-    name: bitnamilegacy/kubectl:1.33.4
+    name: alpine/k8s:1.35.0
     entrypoint: [ "" ]
   script:
     - find ./infrastructure/**/overlays -name "kustomization.yaml" | while read -r kustomization; do
