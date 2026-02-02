@@ -1,0 +1,36 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: opencost
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: opencost
+      version: 2.5.3
+      sourceRef:
+        kind: HelmRepository
+        name: opencost
+      interval: 12h
+  # see https://github.com/opencost/opencost-helm-chart/blob/main/charts/opencost/values.yaml
+  values:
+    podSecurityContext:
+      runAsNonRoot: true
+      seccompProfile:
+        type: RuntimeDefault
+    opencost:
+      exporter:
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+          readOnlyRootFilesystem: true
+      ui:
+        enabled: true
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+          readOnlyRootFilesystem: true
