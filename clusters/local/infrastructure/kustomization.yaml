@@ -5,9 +5,9 @@ resources:
   - cert-manager.yaml
   - cloudnative-pg.yaml
   - cluster-resources.yaml
-  - eck-operator.yaml
+  #- eck-operator.yaml
   - external-secrets.yaml
-  - falco.yaml
+  #- falco.yaml
   - garage.yaml
   - grafana.yaml
   - headlamp.yaml
@@ -17,8 +17,8 @@ resources:
   - kyverno.yaml
   - loki.yaml
   - mimir.yaml
-  - nfs-server-provisioner.yaml
+  #- nfs-server-provisioner.yaml
   - sealed-secrets.yaml
   - tempo.yaml
-  - trivy-operator.yaml
-  - velero.yaml
+  #- trivy-operator.yaml
+  #- velero.yaml
