@@ -3,5 +3,5 @@ kind: JWTAuthenticator
 metadata:
   name: jwt-authenticator
 spec:
-  issuer: https://my-idp/my-issuer
-  audience: application-client-id
+  issuer: https://keycloak.local/realms/matlab035
+  audience: pinniped-cli
