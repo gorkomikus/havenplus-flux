@@ -5,7 +5,7 @@ metadata:
 spec:
   keycloakCRName: keycloak
   realm:
-    realm: havenplus
+    realm: matlab035
     enabled: true
     groups:
       - name: k8s-admins
