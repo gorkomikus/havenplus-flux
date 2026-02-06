@@ -114,9 +114,15 @@ tasks:
     desc: "Create and start a local Kubernetes cluster with Kind."
     internal: true
     cmds:
-      - echo "🛠️  Loading container images into Kind cluster - this can take a while!"
-      - for i in `cat .image-versions`; do kind load docker-image $i --name gitops-fluxcd; done
-      - echo "✅  All container images have been loaded into the Kind cluster."
+      - |
+        if [ "{{.PULL_CONTAINER_IMAGES}}" != "true" ]; then
+          echo "ℹ️  Skipping loading of container images as per configuration."
+          exit 0
+        fi
+
+        echo "🛠️  Loading container images into Kind cluster - this can take a while!"
+        for i in $(cat .image-versions); do kind load docker-image $i --name {{.KIND_CLUSTER_NAME}}; done
+        echo "✅  All container images have been loaded into the Kind cluster."
     silent: true
 
   # We are not using the 'flux bootstrap' command, as this will need a Gitlab Access Token. 
